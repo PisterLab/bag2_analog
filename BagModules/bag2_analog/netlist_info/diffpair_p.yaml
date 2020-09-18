@@ -1,0 +1,88 @@
+lib_name: bag2_analog
+cell_name: diffpair_p
+pins: [ "VINN", "VINP", "VOUTP", "VOUTN", "VBTAIL", "VDD" ]
+instances:
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  XINB:
+    lib_name: BAG_prim
+    cell_name: pmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "net1"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTN"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VINP"
+        num_bits: 1
+  XINA:
+    lib_name: BAG_prim
+    cell_name: pmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "net1"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTP"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VINN"
+        num_bits: 1
+  X2:
+    lib_name: BAG_prim
+    cell_name: pmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "net1"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VBTAIL"
+        num_bits: 1

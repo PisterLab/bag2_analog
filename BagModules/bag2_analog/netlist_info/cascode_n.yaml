@@ -1,0 +1,64 @@
+lib_name: bag2_analog
+cell_name: cascode_n
+pins: [ "S", "M", "D", "B", "G<1:0>" ]
+instances:
+  XN<0>:
+    lib_name: BAG_prim
+    cell_name: nmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "S"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "M"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "B"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "G<0>"
+        num_bits: 1
+  XN<1>:
+    lib_name: BAG_prim
+    cell_name: nmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "M"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "D"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "B"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "G<1>"
+        num_bits: 1
+  PIN4:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
