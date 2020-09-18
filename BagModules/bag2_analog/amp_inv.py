@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import Dict
+from typing import Mapping, Any
 
 import os
 import pkg_resources
@@ -23,8 +23,7 @@ class bag2_analog__amp_inv(Module):
         Module.__init__(self, database, self.yaml_file, parent=parent, prj=prj, **kwargs)
 
     @classmethod
-    def get_params_info(cls):
-        # type: () -> Dict[str, str]
+    def get_params_info(cls) -> Mapping[str,str]:
         """Returns a dictionary from parameter names to descriptions.
 
         Returns
@@ -33,9 +32,19 @@ class bag2_analog__amp_inv(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
+            lch = 'Channel length (m)',
+            w_dict = 'Transistor width dictionary.',
+            th_dict = 'Transistor threshold dictionary',
+            seg_dict = 'Transistor number of segments dictionary.',
         )
 
-    def design(self):
+    @classmethod
+    def get_default_params_info(cls) -> Mapping[str,Any]:
+        return dict(
+                seg_dict = dict(p=1, n=1)
+            )
+
+    def design(self, **params) -> None:
         """To be overridden by subclasses to design this module.
 
         This method should fill in values for all parameters in
@@ -51,5 +60,10 @@ class bag2_analog__amp_inv(Module):
         restore_instance()
         array_instance()
         """
-        pass
-
+        tran_info_list = [('XP', 'p'), ('XN', 'n')]
+        for inst_name, inst_type in tran_info_list:
+            w = params['w_dict'][inst_type]
+            th = params['th_dict'][inst_type]
+            seg = params['seg_dict'][inst_type]
+            lch = params['lch']
+            self.instances[inst_name].design(w=w, l=lch, nf=seg, intent=th)
