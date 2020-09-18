@@ -8,6 +8,7 @@ __pycache__
 # cadence files
 .cadence
 *.cdslck
+*.cdslck.*
 .calibreviewsetup
 .tmp_*
 libManager.log.*
