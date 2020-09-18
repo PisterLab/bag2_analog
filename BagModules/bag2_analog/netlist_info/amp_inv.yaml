@@ -2,7 +2,7 @@ lib_name: bag2_analog
 cell_name: amp_inv
 pins: [ "VIN", "VOUT", "VSS", "VDD" ]
 instances:
-  X0:
+  XN:
     lib_name: BAG_prim
     cell_name: nmos4_5
     instpins:
@@ -22,7 +22,7 @@ instances:
         direction: inputOutput
         net_name: "VIN"
         num_bits: 1
-  X1:
+  XP:
     lib_name: BAG_prim
     cell_name: pmos4_5
     instpins:
