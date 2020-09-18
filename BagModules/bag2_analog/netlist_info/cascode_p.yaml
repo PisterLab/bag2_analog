@@ -2,7 +2,7 @@ lib_name: bag2_analog
 cell_name: cascode_p
 pins: [ "S", "M", "D", "B", "G<1:0>" ]
 instances:
-  X0:
+  XP<0>:
     lib_name: BAG_prim
     cell_name: pmos4_svt
     instpins:
@@ -22,7 +22,7 @@ instances:
         direction: inputOutput
         net_name: "G<0>"
         num_bits: 1
-  X1:
+  XP<1>:
     lib_name: BAG_prim
     cell_name: pmos4_svt
     instpins:

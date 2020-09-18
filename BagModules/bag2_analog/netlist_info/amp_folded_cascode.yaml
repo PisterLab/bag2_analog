@@ -1,6 +1,6 @@
 lib_name: bag2_analog
 cell_name: amp_folded_cascode
-pins: [ "VDD", "VSS", "VINN", "VINP", "VNMIDA", "VBTAIL", "VOUTP", "VOUTN", "VNMIDB", "VPMIDA", "VPMIDB", "VP<1:0>", "VN<1:0>", "VOUT" ]
+pins: [ "VDD", "VSS", "VINN", "VINP", "VNMIDA", "VBTAIL", "VOUTP", "VOUTN", "VNMIDB", "VPMIDA", "VPMIDB", "VP<0>", "VP<1>", "VN<1>", "VN<0>", "VOUT" ]
 instances:
   XDIFFPAIR:
     lib_name: bag2_analog
@@ -30,6 +30,18 @@ instances:
         direction: input
         net_name: "VINP"
         num_bits: 1
+  PIN12:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN11:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN14:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
   PIN1:
     lib_name: basic
     cell_name: iopin
@@ -38,15 +50,11 @@ instances:
     lib_name: basic
     cell_name: iopin
     instpins: {}
-  PIN12:
+  PIN15:
     lib_name: basic
-    cell_name: ipin
+    cell_name: iopin
     instpins: {}
   PIN5:
-    lib_name: basic
-    cell_name: ipin
-    instpins: {}
-  PIN11:
     lib_name: basic
     cell_name: ipin
     instpins: {}
@@ -86,115 +94,55 @@ instances:
     lib_name: basic
     cell_name: opin
     instpins: {}
-  XNB:
+  XCASCODE:
     lib_name: bag2_analog
-    cell_name: cascode_n
+    cell_name: cascode_dual
     instpins:
-      M:
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VNMIDB:
         direction: inputOutput
         net_name: "VNMIDB"
         num_bits: 1
-      G<0>:
-        direction: inputOutput
-        net_name: "VN<0>"
-        num_bits: 1
-      D:
-        direction: inputOutput
+      VOUTB:
+        direction: output
         net_name: "VOUTN"
         num_bits: 1
-      S:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G<1>:
-        direction: inputOutput
-        net_name: "VN<1>"
-        num_bits: 1
-  XNA:
-    lib_name: bag2_analog
-    cell_name: cascode_n
-    instpins:
-      M:
-        direction: inputOutput
-        net_name: "VNMIDA"
-        num_bits: 1
-      G<0>:
-        direction: inputOutput
-        net_name: "VN<0>"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VOUTP"
-        num_bits: 1
-      S:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G<1>:
-        direction: inputOutput
-        net_name: "VN<1>"
-        num_bits: 1
-  XPA:
-    lib_name: bag2_analog
-    cell_name: cascode_p
-    instpins:
-      M:
-        direction: inputOutput
-        net_name: "VPMIDA"
-        num_bits: 1
-      G<0>:
-        direction: inputOutput
-        net_name: "VP<0>"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VOUTP"
-        num_bits: 1
-      S:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      G<1>:
-        direction: inputOutput
-        net_name: "VP<1>"
-        num_bits: 1
-  XPB:
-    lib_name: bag2_analog
-    cell_name: cascode_p
-    instpins:
-      M:
+      VPMIDB:
         direction: inputOutput
         net_name: "VPMIDB"
         num_bits: 1
-      G<0>:
-        direction: inputOutput
+      VN<0>:
+        direction: input
+        net_name: "VN<0>"
+        num_bits: 1
+      VN<1>:
+        direction: input
+        net_name: "VN<1>"
+        num_bits: 1
+      VP<1>:
+        direction: input
+        net_name: "VP<1>"
+        num_bits: 1
+      VP<0>:
+        direction: input
         net_name: "VP<0>"
         num_bits: 1
-      D:
+      VNMIDA:
         direction: inputOutput
-        net_name: "VOUTN"
+        net_name: "VNMIDA"
         num_bits: 1
-      S:
-        direction: inputOutput
-        net_name: "VDD"
+      VOUTA:
+        direction: output
+        net_name: "VOUTP"
         num_bits: 1
-      B:
+      VPMIDA:
         direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      G<1>:
-        direction: inputOutput
-        net_name: "VP<1>"
+        net_name: "VPMIDA"
         num_bits: 1
