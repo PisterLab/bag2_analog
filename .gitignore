@@ -1,4 +1,15 @@
+# Python
 .idea
 *.pyc
 *~
 __pycache__
+
+
+# cadence files
+.cadence
+*.cdslck
+.calibreviewsetup
+.tmp_*
+libManager.log.*
+.nfs*
+
