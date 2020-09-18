@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import Dict
+from typing import Mapping
 
 import os
 import pkg_resources
@@ -23,7 +23,7 @@ class bag2_analog__diffpair_p(Module):
         Module.__init__(self, database, self.yaml_file, parent=parent, prj=prj, **kwargs)
 
     @classmethod
-    def get_params_info(cls):
+    def get_params_info(cls) -> Mapping[str,str]:
         # type: () -> Dict[str, str]
         """Returns a dictionary from parameter names to descriptions.
 
@@ -33,9 +33,13 @@ class bag2_analog__diffpair_p(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
+            lch = 'Channel length',
+            w_dict = 'Dictionary of device widths',
+            seg_dict = 'Dictionary of segments per device',
+            th_dict = 'Dictionary of threshold flavors'
         )
 
-    def design(self):
+    def design(self, **params) -> None:
         """To be overridden by subclasses to design this module.
 
         This method should fill in values for all parameters in
@@ -51,5 +55,15 @@ class bag2_analog__diffpair_p(Module):
         restore_instance()
         array_instance()
         """
-        pass
+        device_map = dict(
+            XINA='in',
+            XINB='in',
+            XTAIL='tail')
 
+        for device_name, key_name in device_map.items():
+            w = params['w_dict'][key_name]
+            seg = params['seg_dict'][key_name]
+            intent = params['th_dict'][key_name]
+            lch = params['lch']
+
+            self.instances[device_name].design(w=w, l=lch, nf=seg, intent=intent)
