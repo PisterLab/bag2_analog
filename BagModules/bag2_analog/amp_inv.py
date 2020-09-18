@@ -53,7 +53,7 @@ class bag2_analog__amp_inv(Module):
 
         To modify schematic structure, call:
 
-        rename_pin()
+        rename_pin() 
         delete_instance()
         replace_instance_master()
         reconnect_instance_terminal()
