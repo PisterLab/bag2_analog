@@ -1,146 +1,34 @@
 lib_name: bag2_analog
 cell_name: amp_folded_cascode
-pins: [ "VDD", "VSS", "VINN", "VINP", "VOUT", "VBTAIL" ]
+pins: [ "VDD", "VSS", "VINN", "VINP", "VNMIDA", "VBTAIL", "VOUTP", "VOUTN", "VNMIDB", "VPMIDA", "VPMIDB", "VP<1:0>", "VN<1:0>", "VOUT" ]
 instances:
-  XNOUTA:
-    lib_name: BAG_prim
-    cell_name: nmos4_svt
+  XDIFFPAIR:
+    lib_name: bag2_analog
+    cell_name: diffpair_n
     instpins:
-      S:
+      VSS:
         direction: inputOutput
         net_name: "VSS"
         num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "net09"
+      VOUTN:
+        direction: output
+        net_name: "VPMIDB"
         num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
+      VOUTP:
+        direction: output
+        net_name: "VPMIDA"
         num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "net06"
-        num_bits: 1
-  XNINA:
-    lib_name: BAG_prim
-    cell_name: nmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "net09"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "net03"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "net05"
-        num_bits: 1
-  XNOUTB:
-    lib_name: BAG_prim
-    cell_name: nmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "net08"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "net06"
-        num_bits: 1
-  XNINB:
-    lib_name: BAG_prim
-    cell_name: nmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "net08"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VOUT"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "net05"
-        num_bits: 1
-  XTAIL:
-    lib_name: BAG_prim
-    cell_name: nmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "net6"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
+      VBTAIL:
+        direction: input
         net_name: "VBTAIL"
         num_bits: 1
-  XINB:
-    lib_name: BAG_prim
-    cell_name: nmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "net6"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VMIDB"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "VINP"
-        num_bits: 1
-  XINA:
-    lib_name: BAG_prim
-    cell_name: nmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "net6"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VMIDA"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
+      VINN:
+        direction: input
         net_name: "VINN"
+        num_bits: 1
+      VINP:
+        direction: input
+        net_name: "VINP"
         num_bits: 1
   PIN1:
     lib_name: basic
@@ -150,7 +38,15 @@ instances:
     lib_name: basic
     cell_name: iopin
     instpins: {}
+  PIN12:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
   PIN5:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN11:
     lib_name: basic
     cell_name: ipin
     instpins: {}
@@ -162,87 +58,143 @@ instances:
     lib_name: basic
     cell_name: ipin
     instpins: {}
+  PIN13:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN9:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN10:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN8:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN7:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN6:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
   PIN4:
     lib_name: basic
     cell_name: opin
     instpins: {}
-  XPOUTA:
-    lib_name: BAG_prim
-    cell_name: pmos4_svt
+  XNB:
+    lib_name: bag2_analog
+    cell_name: cascode_n
     instpins:
-      S:
+      M:
         direction: inputOutput
-        net_name: "VDD"
+        net_name: "VNMIDB"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VN<0>"
         num_bits: 1
       D:
         direction: inputOutput
-        net_name: "VMIDA"
+        net_name: "VOUTN"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G<1>:
+        direction: inputOutput
+        net_name: "VN<1>"
+        num_bits: 1
+  XNA:
+    lib_name: bag2_analog
+    cell_name: cascode_n
+    instpins:
+      M:
+        direction: inputOutput
+        net_name: "VNMIDA"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VN<0>"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTP"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G<1>:
+        direction: inputOutput
+        net_name: "VN<1>"
+        num_bits: 1
+  XPA:
+    lib_name: bag2_analog
+    cell_name: cascode_p
+    instpins:
+      M:
+        direction: inputOutput
+        net_name: "VPMIDA"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VP<0>"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTP"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VDD"
         num_bits: 1
       B:
         direction: inputOutput
         net_name: "VDD"
         num_bits: 1
-      G:
+      G<1>:
         direction: inputOutput
-        net_name: "net016"
+        net_name: "VP<1>"
         num_bits: 1
-  XPINA:
-    lib_name: BAG_prim
-    cell_name: pmos4_svt
+  XPB:
+    lib_name: bag2_analog
+    cell_name: cascode_p
     instpins:
-      S:
+      M:
         direction: inputOutput
-        net_name: "VMIDA"
+        net_name: "VPMIDB"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VP<0>"
         num_bits: 1
       D:
         direction: inputOutput
-        net_name: "net03"
+        net_name: "VOUTN"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VDD"
         num_bits: 1
       B:
         direction: inputOutput
         net_name: "VDD"
         num_bits: 1
-      G:
+      G<1>:
         direction: inputOutput
-        net_name: "net018"
-        num_bits: 1
-  XPOUTB:
-    lib_name: BAG_prim
-    cell_name: pmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VMIDB"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "net016"
-        num_bits: 1
-  XPINB:
-    lib_name: BAG_prim
-    cell_name: pmos4_svt
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "VMIDB"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VOUT"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "net018"
+        net_name: "VP<1>"
         num_bits: 1
