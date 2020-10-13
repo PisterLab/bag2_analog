@@ -1,0 +1,40 @@
+lib_name: bag2_analog
+cell_name: pmos4_astack
+pins: [ "G", "B", "D", "S" ]
+instances:
+  XP:
+    lib_name: BAG_prim
+    cell_name: pmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "S"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "D"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "B"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "G"
+        num_bits: 1
+  PIN3:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
