@@ -1,11 +1,15 @@
 lib_name: bag2_analog
 cell_name: amp_folded_cascode
-pins: [ "VDD", "VSS", "VINN", "VINP", "VNMIDA", "VBTAIL", "VOUTP", "VOUTN", "VNMIDB", "VPMIDA", "VPMIDB", "VP<0>", "VP<1>", "VN<1>", "VN<0>", "VOUT" ]
+pins: [ "VDD", "VSS", "VINN", "VINP", "VNMIDA", "VGTAIL", "VOUTP", "VOUTN", "VNMIDB", "VPMIDA", "VPMIDB", "VP<0>", "VP<1>", "VN<1>", "VN<0>", "VOUT" ]
 instances:
   XDIFFPAIR:
     lib_name: bag2_analog
     cell_name: diffpair_n
     instpins:
+      VGTAIL:
+        direction: input
+        net_name: "VGTAIL"
+        num_bits: 1
       VSS:
         direction: inputOutput
         net_name: "VSS"
@@ -17,10 +21,6 @@ instances:
       VOUTP:
         direction: output
         net_name: "VPMIDA"
-        num_bits: 1
-      VBTAIL:
-        direction: input
-        net_name: "VBTAIL"
         num_bits: 1
       VINN:
         direction: input

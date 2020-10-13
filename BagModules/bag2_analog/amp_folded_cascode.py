@@ -147,7 +147,7 @@ class bag2_analog__amp_folded_cascode(Module):
                 VINN='VINN',
                 VOUTP='VNMIDA',
                 VOUTN='VNMIDB',
-                VBTAIL='VBTAIL',
+                VGTAIL='VGTAIL',
                 VDD='VDD')
 
             for pin, net in diffpair_conn.items():
