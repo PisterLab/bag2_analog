@@ -1,0 +1,64 @@
+lib_name: bag2_analog
+cell_name: amp_sf
+pins: [ "VDD", "VSS", "VN", "VP", "VOUT" ]
+instances:
+  XP:
+    lib_name: bag2_analog
+    cell_name: pmos4_astack
+    instpins:
+      D:
+        direction: inputOutput
+        net_name: "mid"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VP"
+        num_bits: 1
+  XN:
+    lib_name: bag2_analog
+    cell_name: nmos4_astack
+    instpins:
+      D:
+        direction: inputOutput
+        net_name: "mid"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VN"
+        num_bits: 1
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
