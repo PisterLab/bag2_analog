@@ -30,7 +30,7 @@ instances:
         direction: input
         net_name: "VINP"
         num_bits: 1
-  XMIRRA:
+  XMIRR_LOAD:
     lib_name: bag2_analog
     cell_name: mirror_p
     instpins:
@@ -54,7 +54,7 @@ instances:
         direction: input
         net_name: "VOUT1A"
         num_bits: 1
-  XMIRRB:
+  XMIRR_LOADOUT:
     lib_name: bag2_analog
     cell_name: mirror_p
     instpins:
@@ -78,7 +78,7 @@ instances:
         direction: input
         net_name: "VOUT1B"
         num_bits: 1
-  XMIRRC:
+  XMIRR_FLIPOUT:
     lib_name: bag2_analog
     cell_name: mirror_n
     instpins:

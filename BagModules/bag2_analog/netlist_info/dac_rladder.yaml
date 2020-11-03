@@ -1,0 +1,16 @@
+lib_name: bag2_analog
+cell_name: dac_rladder
+pins: [  ]
+instances:
+  XR<1:0>:
+    lib_name: bag2_wrappers
+    cell_name: res_ideal
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "VDD,m<0>"
+        num_bits: 2
+      MINUS:
+        direction: inputOutput
+        net_name: "m<0>,VSS"
+        num_bits: 2

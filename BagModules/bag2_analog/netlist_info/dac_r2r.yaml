@@ -1,0 +1,76 @@
+lib_name: bag2_analog
+cell_name: dac_r2r
+pins: [ "B", "VSS", "VOUT" ]
+instances:
+  XR2_XBOT:
+    lib_name: bag2_wrappers
+    cell_name: res_ideal
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "net03"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+  XR2_XTOP:
+    lib_name: bag2_wrappers
+    cell_name: res_ideal
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "m"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "net03"
+        num_bits: 1
+  XR2_TOP:
+    lib_name: bag2_wrappers
+    cell_name: res_ideal
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "B"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "r"
+        num_bits: 1
+  XR2_BOT:
+    lib_name: bag2_wrappers
+    cell_name: res_ideal
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "r"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "m"
+        num_bits: 1
+  XR1:
+    lib_name: bag2_wrappers
+    cell_name: res_ideal
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "m"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "VOUT"
+        num_bits: 1
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
