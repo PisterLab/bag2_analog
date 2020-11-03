@@ -1,10 +1,10 @@
 lib_name: bag2_analog
-cell_name: dac_rladder
-pins: [ "VDD", "VSS", "S", "VOUT" ]
+cell_name: mux_bin
+pins: [ "S", "VIN<1:0>", "VOUT", "VDD", "VSS" ]
 instances:
   XMUX:
     lib_name: bag2_analog
-    cell_name: mux_bin
+    cell_name: mux_bin_sel
     instpins:
       VSS:
         direction: inputOutput
@@ -20,20 +20,20 @@ instances:
         num_bits: 1
       S:
         direction: input
-        net_name: "S"
+        net_name: "sel_buf"
+        num_bits: 1
+      Sb:
+        direction: input
+        net_name: "selb_buf"
         num_bits: 1
       VIN<1:0>:
         direction: input
-        net_name: "mid<1:0>"
+        net_name: "VIN<1:0>"
         num_bits: 2
-  XRLADDER:
-    lib_name: bag2_analog
-    cell_name: rladder_core
+  XBUF:
+    lib_name: bag2_digital
+    cell_name: inv_chain
     instpins:
-      out<0>:
-        direction: output
-        net_name: "mid<0>"
-        num_bits: 1
       VSS:
         direction: inputOutput
         net_name: "VSS"
@@ -42,15 +42,23 @@ instances:
         direction: inputOutput
         net_name: "VDD"
         num_bits: 1
-  PIN0:
-    lib_name: basic
-    cell_name: iopin
-    instpins: {}
+      out:
+        direction: output
+        net_name: "sel_buf"
+        num_bits: 1
+      outb:
+        direction: output
+        net_name: "selb_buf"
+        num_bits: 1
+      in:
+        direction: input
+        net_name: "S"
+        num_bits: 1
   PIN1:
     lib_name: basic
-    cell_name: iopin
+    cell_name: ipin
     instpins: {}
-  PIN2:
+  PIN0:
     lib_name: basic
     cell_name: ipin
     instpins: {}
@@ -58,19 +66,11 @@ instances:
     lib_name: basic
     cell_name: opin
     instpins: {}
-  XNOCONN_UPPER:
+  PIN4:
     lib_name: basic
-    cell_name: noConn
-    instpins:
-      noConn:
-        direction: inputOutput
-        net_name: "net5"
-        num_bits: 1
-  XNOCONN_LOWER:
+    cell_name: iopin
+    instpins: {}
+  PIN2:
     lib_name: basic
-    cell_name: noConn
-    instpins:
-      noConn:
-        direction: inputOutput
-        net_name: "net6"
-        num_bits: 1
+    cell_name: iopin
+    instpins: {}

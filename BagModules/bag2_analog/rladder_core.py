@@ -58,11 +58,6 @@ class bag2_analog__rladder_core(Module):
 
         assert num_out >= 1, f'Number of outputs {num_out} must be >= 1'
 
-        # Design unit
-        self.instances['XR'].parameters = res_params
-
-        print("*** WARNING *** (rladder_core) Check generated ideal passive values")
-
         # Array instance
         suffix = f'<{num_out-1}:0>'
         suffix_short = f'<{num_out-1}:1>' if num_out > 2 else '<1>'
@@ -70,4 +65,12 @@ class bag2_analog__rladder_core(Module):
         plus_conn = f'VDD,out{suffix_short}'
         self.array_instance('XR', [f'XR{suffix}'], [dict(MINUS=minus_conn,
                                                         PLUS=plus_conn)])
+
+        # Design instances
+        self.instances['XR'][0].parameters = res_params
+        # for i in range(num_out):
+        #     self.instances['XR'][i].parameters = res_params
+        print("*** WARNING *** (rladder_core) Check generated ideal passive values")
+
+        # Rename pin
         self.rename_pin('out<0>', f'out{suffix}')
