@@ -34,7 +34,8 @@ class bag2_analog__rladder_core(Module):
         """
         return dict(
             num_out = 'Number of outputs.',
-            res_params = 'Resistor unit parameters.'
+            res_params = 'Resistor unit parameters.',
+            bulk_conn = 'String of net to connect the bulk to, e.g. "VDD", "VSS", or something else'
         )
 
     def design(self, **params):
@@ -55,6 +56,7 @@ class bag2_analog__rladder_core(Module):
         """
         num_out = params['num_out']
         res_params = params['res_params']
+        bulk_conn = params['bulk_conn']
 
         assert num_out >= 1, f'Number of outputs {num_out} must be >= 1'
 
@@ -64,13 +66,19 @@ class bag2_analog__rladder_core(Module):
         minus_conn = f'out{suffix}'
         plus_conn = f'VDD,out{suffix_short}'
         self.array_instance('XR', [f'XR{suffix}'], [dict(MINUS=minus_conn,
-                                                        PLUS=plus_conn)])
+                                                        PLUS=plus_conn,
+                                                        BULK=bulk_conn)])
 
         # Design instances
-        self.instances['XR'][0].parameters = res_params
-        # for i in range(num_out):
-        #     self.instances['XR'][i].parameters = res_params
-        print("*** WARNING *** (rladder_core) Check generated ideal passive values")
+        # self.instances['XR'][0].parameters = res_params
+        # print("*** WARNING *** (rladder_core) Check generated ideal passive values")
+        self.instances['XR'][0].design(**res_params)
+
+        # Adjust resistor bulk connection if necessary
+        if bulk_conn in ('VDD', 'VSS'):
+            self.remove_pin('BULK')
+        elif bulk_conn != 'BULK':
+            self.rename_pin('BULK', bulk_conn)
 
         # Rename pin
         self.rename_pin('out<0>', f'out{suffix}')

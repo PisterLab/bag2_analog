@@ -30,6 +30,10 @@ instances:
     lib_name: bag2_analog
     cell_name: rladder_core
     instpins:
+      BULK:
+        direction: inputOutput
+        net_name: "net03"
+        num_bits: 1
       out<0>:
         direction: output
         net_name: "mid<0>"

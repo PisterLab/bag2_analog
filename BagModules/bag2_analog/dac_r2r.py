@@ -33,6 +33,7 @@ class bag2_analog__dac_r2r(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
+            bulk_conn = 'The net for the resistor bulk terminals',
             res_params = 'Parameters for a single resistor unit. 2R units are series units.',
             num_bits = 'Number of bits.'
         )
@@ -55,15 +56,17 @@ class bag2_analog__dac_r2r(Module):
         """
         num_bits = params['num_bits']
         res_params = params['res_params']
+        bulk_conn = params['bulk_conn']
 
         assert num_bits > 0, f'Number of bits {num_bits} must be > 0'
 
         # Design instances
         inst_suffixes = ['2_TOP', '2_BOT', '2_XTOP', '2_XBOT', '1']
         for inst in [f'XR{s}' for s in inst_suffixes]:
-            self.instances[inst].parameters = res_params
+            self.instances[inst].design(**res_params)
+            # self.instances[inst].parameters = res_params
 
-        print('*** WARNING *** (dac_r2r) Check that ideal passive values are correct in generated schematic')
+        # print('*** WARNING *** (dac_r2r) Check that ideal passive values are correct in generated schematic')
 
         # Array and/or delete instances as necessary
         suffix = f'<{num_bits-1}:0>'
@@ -87,13 +90,21 @@ class bag2_analog__dac_r2r(Module):
             
             self.array_instance('XR1', [f'XR1<{num_bits-2}:0>'], 
                                 [dict(PLUS=xr1_top_conn,
-                                     MINUS=xr1_bot_conn)])
+                                     MINUS=xr1_bot_conn,
+                                     BULK=bulk_conn)])
             self.array_instance('XR2_TOP', [f'XR2_TOP<{num_bits-1}:0>'],
                                 [dict(PLUS=xr2_top_conn,
-                                     MINUS=f'r<{num_bits-1}:0>')])
+                                     MINUS=f'r<{num_bits-1}:0>',
+                                     BULK=bulk_conn)])
             self.array_instance('XR2_BOT', [f'XR2_BOT<{num_bits-1}:0>'],
                                 [dict(PLUS=f'r<{num_bits-1}:0>',
-                                     MINUS=xr2_mid_conn)])
+                                     MINUS=xr2_mid_conn,
+                                     BULK=bulk_conn)])
             self.reconnect_instance_terminal('XR2_XTOP', 'PLUS', 'm<0>')
 
             self.rename_pin('B', f'B<{num_bits-1}:0>')
+
+        if bulk_conn == 'VSS':
+            self.remove_pin('BULK')
+        elif bulk_conn != 'BULK':
+            self.rename_pin('BULK', bulk_conn)

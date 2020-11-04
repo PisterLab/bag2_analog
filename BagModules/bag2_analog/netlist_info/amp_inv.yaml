@@ -4,7 +4,7 @@ pins: [ "VIN", "VOUT", "VSS", "VDD" ]
 instances:
   XN:
     lib_name: BAG_prim
-    cell_name: nmos4_5
+    cell_name: nmos4_svt
     instpins:
       S:
         direction: inputOutput
@@ -17,26 +17,6 @@ instances:
       B:
         direction: inputOutput
         net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "VIN"
-        num_bits: 1
-  XP:
-    lib_name: BAG_prim
-    cell_name: pmos4_5
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VOUT"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VDD"
         num_bits: 1
       G:
         direction: inputOutput
@@ -58,3 +38,23 @@ instances:
     lib_name: basic
     cell_name: iopin
     instpins: {}
+  XP:
+    lib_name: BAG_prim
+    cell_name: pmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUT"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VIN"
+        num_bits: 1
