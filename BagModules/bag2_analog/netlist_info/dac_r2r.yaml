@@ -1,8 +1,8 @@
 lib_name: bag2_analog
 cell_name: dac_r2r
-pins: [ "B", "VSS", "VOUT", "BULK" ]
+pins: [ "B", "VSS", "VOUT", "VDD" ]
 instances:
-  PIN4:
+  PIN5:
     lib_name: basic
     cell_name: iopin
     instpins: {}
@@ -18,83 +18,47 @@ instances:
     lib_name: basic
     cell_name: ipin
     instpins: {}
-  XR2_XTOP:
-    lib_name: BAG_prim
-    cell_name: res_standard_dn
+  XRES:
+    lib_name: bag2_analog
+    cell_name: r2r_core
     instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "m"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
-        net_name: "net1"
-        num_bits: 1
       BULK:
         direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
-  XR2_XBOT:
-    lib_name: BAG_prim
-    cell_name: res_standard_dn
-    instpins:
-      PLUS:
-        direction: inputOutput
         net_name: "net1"
         num_bits: 1
-      MINUS:
+      VSS:
         direction: inputOutput
         net_name: "VSS"
         num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
-  XR2_TOP:
-    lib_name: BAG_prim
-    cell_name: res_standard_dn
-    instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "B"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
-        net_name: "r"
-        num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
-  XR2_BOT:
-    lib_name: BAG_prim
-    cell_name: res_standard_dn
-    instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "r"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
-        net_name: "m"
-        num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
-  XR1:
-    lib_name: BAG_prim
-    cell_name: res_standard_dn
-    instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "m"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
+      VOUT:
+        direction: output
         net_name: "VOUT"
         num_bits: 1
-      BULK:
+      B:
+        direction: input
+        net_name: "B_buf"
+        num_bits: 1
+  XBUF:
+    lib_name: bag2_digital
+    cell_name: inv_chain
+    instpins:
+      VSS:
         direction: inputOutput
-        net_name: "BULK"
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      out:
+        direction: output
+        net_name: "B_buf"
+        num_bits: 1
+      outb:
+        direction: output
+        net_name: "Bb_buf"
+        num_bits: 1
+      in:
+        direction: input
+        net_name: "B"
         num_bits: 1

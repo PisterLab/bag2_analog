@@ -33,8 +33,8 @@ class bag2_analog__dac_r2r(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
-            bulk_conn = 'The net for the resistor bulk terminals',
-            res_params = 'Parameters for a single resistor unit. 2R units are series units.',
+            r2r_params = 'Parameters for a R2R resistor core.',
+            buf_params_list = 'List of inverter chain parameters (ordering matches bit, i.e. LSB is buffered with index 0)',
             num_bits = 'Number of bits.'
         )
 
@@ -55,56 +55,25 @@ class bag2_analog__dac_r2r(Module):
         array_instance()
         """
         num_bits = params['num_bits']
-        res_params = params['res_params']
-        bulk_conn = params['bulk_conn']
+        r2r_params = params['r2r_params']
+        buf_params_list = params['buf_params_list']
 
         assert num_bits > 0, f'Number of bits {num_bits} must be > 0'
 
-        # Design instances
-        inst_suffixes = ['2_TOP', '2_BOT', '2_XTOP', '2_XBOT', '1']
-        for inst in [f'XR{s}' for s in inst_suffixes]:
-            self.instances[inst].design(**res_params)
-            # self.instances[inst].parameters = res_params
+        # Design instances and change pin names as necessary
+        self.instances['XRES'].design(num_bits=num_bits, **r2r_params)
 
-        # print('*** WARNING *** (dac_r2r) Check that ideal passive values are correct in generated schematic')
-
-        # Array and/or delete instances as necessary
-        suffix = f'<{num_bits-1}:0>'
-        if num_bits == 1:
-            xr2_mid_conn = 'VOUT'
-            self.delete_instance('XR1')
-            self.reconnect_instance_terminal('XR2_BOT', 'MINUS', xr2_mid_conn)
-            self.reconnect_instance_terminal('XR2_XTOP', 'PLUS', xr2_mid_conn)
-        else:
-            num_mid = num_bits - 1
-            if num_mid > 1:
-                xr1_top_conn = f'm<{num_mid-1}:0>'
-                xr1_bot_conn = f'VOUT,m<{num_mid-1}:1>' if num_mid > 2 else 'VOUT,m<1>'
-                xr2_mid_conn = f'VOUT,m<{num_mid-1}:0>'
-            else:
-                xr1_top_conn = 'm<0>'
-                xr1_bot_conn = 'VOUT'
-                xr2_mid_conn = 'VOUT,m<0>'
-
-            xr2_top_conn = f'B<{num_bits-1}:0>'
-            
-            self.array_instance('XR1', [f'XR1<{num_bits-2}:0>'], 
-                                [dict(PLUS=xr1_top_conn,
-                                     MINUS=xr1_bot_conn,
-                                     BULK=bulk_conn)])
-            self.array_instance('XR2_TOP', [f'XR2_TOP<{num_bits-1}:0>'],
-                                [dict(PLUS=xr2_top_conn,
-                                     MINUS=f'r<{num_bits-1}:0>',
-                                     BULK=bulk_conn)])
-            self.array_instance('XR2_BOT', [f'XR2_BOT<{num_bits-1}:0>'],
-                                [dict(PLUS=f'r<{num_bits-1}:0>',
-                                     MINUS=xr2_mid_conn,
-                                     BULK=bulk_conn)])
-            self.reconnect_instance_terminal('XR2_XTOP', 'PLUS', 'm<0>')
-
+        if num_bits > 1:
             self.rename_pin('B', f'B<{num_bits-1}:0>')
-
-        if bulk_conn == 'VSS':
-            self.remove_pin('BULK')
-        elif bulk_conn != 'BULK':
-            self.rename_pin('BULK', bulk_conn)
+            buf_insts = [f'XBUF<{i}>' for i in range(num_bits)]
+            buf_conns = [{'in': f'B<{i}>',
+                          'out' : f'B_buf<{i}>',
+                          'VDD' : 'VDD',
+                          'VSS' : 'VSS'} for i in range(num_bits)]
+            self.array_instance('XBUF', buf_insts, buf_conns)
+            for i in range(num_bits):
+                self.instances['XBUF'][i].design(dual_output=False, **(buf_params_list[i]))
+            self.reconnect_instance_terminal('XRES', f'B<{num_bits-1}:0>', f'B_buf<{num_bits-1}:0>')
+        else:
+            self.instances['XBUF'].design(dual_output=False, **(buf_params_list[0]))
+            self.reconnect_instance_terminal('XRES', 'B', 'B_buf')

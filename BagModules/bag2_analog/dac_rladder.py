@@ -103,6 +103,6 @@ class bag2_analog__dac_rladder(Module):
         elif code_max < num_res - 2:
             num_unused_upper = num_res - 1 - code_max
             self.array_instance('XNOCONN_UPPER', [f'XNOCONN_UPPER<{num_res-1}:{num_res-num_unused_upper}>'],
-                                [dict(noconn=f'mid<{num_res-1}:{num_res-num_unused_upper}>')])
+                                [dict(noConn=f'mid<{num_res-1}:{num_res-num_unused_upper}>')])
         else:
             self.reconnect_instance_terminal('XNOCONN_UPPER', 'noConn', f'mid<{num_res-1}>')
