@@ -50,22 +50,6 @@ instances:
         direction: input
         net_name: "VP"
         num_bits: 1
-  XRES:
-    lib_name: BAG_prim
-    cell_name: res_standard_dn
-    instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "VX"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
   PIN1:
     lib_name: basic
     cell_name: iopin
@@ -82,3 +66,19 @@ instances:
     lib_name: basic
     cell_name: opin
     instpins: {}
+  XRES:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "VX"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
