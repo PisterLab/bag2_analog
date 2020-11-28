@@ -33,7 +33,7 @@ class bag2_analog__diffpair_n(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
-            lch_dict = 'Dictionray of device channel lengths',
+            lch_dict = 'Dictionary of device channel lengths',
             w_dict = 'Dictionary of device widths',
             seg_dict = 'Dictionary of segments per device',
             th_dict = 'Dictionary of threshold flavors'

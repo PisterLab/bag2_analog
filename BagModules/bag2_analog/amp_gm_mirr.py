@@ -59,7 +59,7 @@ class bag2_analog__amp_gm_mirr(Module):
         diffpair_params = params['diffpair_params']
 
         for mirr_params in mirr_params_dict.values():
-            assert len(mirror_params['seg_out_list'])==1, f'Mirrors should have only 1 output device'
+            assert len(mirr_params['seg_out_list'])==1, f'Mirrors should have only 1 output device'
 
         # Change input pair type as necessary
         if in_type.lower() == 'p':
@@ -85,15 +85,15 @@ class bag2_analog__amp_gm_mirr(Module):
 
             loadout_conn = {'s_in': 'VSS',
                             's_out': 'VSS',
-                            'in': 'VOUT1B'
+                            'in': 'VOUT1B',
                             'out': 'OUT'}
             load_conn = {'s_in': 'VSS',
                             's_out': 'VSS',
-                            'in': 'VOUT1A'
+                            'in': 'VOUT1A',
                             'out': 'VOUT2A'}
             flipout_conn = {'s_in': 'VDD',
                             's_out': 'VDD',
-                            'in': 'VOUT2A'
+                            'in': 'VOUT2A',
                             'out': 'VOUT'}
 
             for pin, net in diffpair_conn.items():
@@ -107,11 +107,11 @@ class bag2_analog__amp_gm_mirr(Module):
 
             for pin, net in flipout_conn.items():
                 self.reconnect_instance_terminal('XMIRR_FLIPOUT', pin, net)
-        elif in_type.lower != 'n':
+        elif in_type.lower() != 'n':
             raise ValueError(f"in_type {in_type} should be 'p' or 'n'")
 
         # Design instances
         self.instances['XDIFFPAIR'].design(**diffpair_params)
-        self.instances['XMIRR_LOADOUT'].design(**(mirr_params['load_out']))
-        self.instances['XMIRR_LOAD'].design(**(mirr_params['load']))
-        self.instances['XMIRR_FLIPOUT'].design(**(mirr_params['flip_out'])
+        self.instances['XMIRR_LOADOUT'].design(**(mirr_params_dict['load_out']))
+        self.instances['XMIRR_LOAD'].design(**(mirr_params_dict['load']))
+        self.instances['XMIRR_FLIPOUT'].design(**(mirr_params_dict['flip_out']))
