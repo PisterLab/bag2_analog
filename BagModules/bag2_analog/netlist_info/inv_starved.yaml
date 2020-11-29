@@ -1,0 +1,108 @@
+lib_name: bag2_analog
+cell_name: inv_starved
+pins: [ "out", "bn", "bpb", "VDD", "VSS", "in" ]
+instances:
+  XN_OUTER:
+    lib_name: BAG_prim
+    cell_name: nmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "net8"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "bn"
+        num_bits: 1
+  XN_INNER:
+    lib_name: BAG_prim
+    cell_name: nmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "net8"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "out"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "in"
+        num_bits: 1
+  XP_OUTER:
+    lib_name: BAG_prim
+    cell_name: pmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "net21"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "bpb"
+        num_bits: 1
+  XP_INNER:
+    lib_name: BAG_prim
+    cell_name: pmos4_svt
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "net21"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "out"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "in"
+        num_bits: 1
+  PIN3:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
