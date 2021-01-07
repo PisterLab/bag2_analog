@@ -34,8 +34,12 @@ class bag2_analog__amp_diff_mirr(Module):
         """
         return dict(
             in_type = '"p" or "n" for NMOS or PMOS input pair',
-            mirr_params = 'Mirror parameters',
-            diffpair_params = 'Input differential pair and tail parameters.'
+            l_dict = 'Dictionary of channel lengths',
+            w_dict = 'Dictionary of channel widths',
+            seg_dict = 'Dictionary of number of fingers',
+            th_dict = 'Dictionary of device intents'
+            # mirr_params = 'Mirror parameters',
+            # diffpair_params = 'Input differential pair and tail parameters.'
         )
 
     def design(self, **params):
@@ -54,9 +58,24 @@ class bag2_analog__amp_diff_mirr(Module):
         restore_instance()
         array_instance()
         """
+
         in_type = params['in_type']
-        diffpair_params = params['diffpair_params']
-        mirror_params = params['mirr_params']
+        l_dict = params['l_dict']
+        w_dict = params['w_dict']
+        seg_dict = params['seg_dict']
+        th_dict = params['th_dict']
+        diffpair_params = dict(lch_dict=l_dict,
+                               w_dict=w_dict,
+                               seg_dict=seg_dict,
+                               th_dict=th_dict)
+        mirror_params = dict(device_params=dict(l=l_dict['load'],
+                                                w=w_dict['load'],
+                                                intent=th_dict['load']),
+                             seg_in=seg_dict['load'],
+                             seg_out_list=[seg_dict['load']])
+
+        # diffpair_params = params['diffpair_params']
+        # mirror_params = params['mirr_params']
 
         assert len(mirror_params['seg_out_list'])==1, f'Mirror should have only 1 output device'
 
