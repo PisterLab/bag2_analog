@@ -86,15 +86,18 @@ class bag2_analog__amp_gm_mirr(Module):
             loadout_conn = {'s_in': 'VSS',
                             's_out': 'VSS',
                             'in': 'VOUT1B',
-                            'out': 'OUT'}
+                            'out': 'VOUT',
+                            'VSS': 'VSS'}
             load_conn = {'s_in': 'VSS',
                             's_out': 'VSS',
                             'in': 'VOUT1A',
-                            'out': 'VOUT2A'}
+                            'out': 'VOUT2A',
+                            'VSS': 'VSS'}
             flipout_conn = {'s_in': 'VDD',
                             's_out': 'VDD',
                             'in': 'VOUT2A',
-                            'out': 'VOUT'}
+                            'out': 'VOUT',
+                            'VDD': 'VDD'}
 
             for pin, net in diffpair_conn.items():
                 self.reconnect_instance_terminal('XDIFFPAIR', pin, net)

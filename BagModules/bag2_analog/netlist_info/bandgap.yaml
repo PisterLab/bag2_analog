@@ -1,0 +1,180 @@
+lib_name: bag2_analog
+cell_name: bandgap
+pins: [ "VDD", "VSS", "VBG", "BULK" ]
+instances:
+  XPP:
+    lib_name: BAG_prim
+    cell_name: pmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "net3"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VOUT_AMP"
+        num_bits: 1
+  XPN:
+    lib_name: BAG_prim
+    cell_name: pmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VBG"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VOUT_AMP"
+        num_bits: 1
+  XRFBN:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "VBG"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "VINN"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "BULK"
+        num_bits: 1
+  XRFBP:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "net3"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "VINP"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "BULK"
+        num_bits: 1
+  XRDIFF:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "VINP"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "VDP"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "BULK"
+        num_bits: 1
+  DP:
+    lib_name: PRIMLIB
+    cell_name: dn
+    instpins:
+      MINUS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      PLUS:
+        direction: inputOutput
+        net_name: "VDP"
+        num_bits: 1
+  DN:
+    lib_name: PRIMLIB
+    cell_name: dn
+    instpins:
+      MINUS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      PLUS:
+        direction: inputOutput
+        net_name: "VINN"
+        num_bits: 1
+  PIN3:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  XOTA:
+    lib_name: bag2_analog
+    cell_name: amp_diff_mirr
+    instpins:
+      VGTAIL:
+        direction: input
+        net_name: "VN"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VOUT:
+        direction: output
+        net_name: "VOUT_AMP"
+        num_bits: 1
+      VINN:
+        direction: input
+        net_name: "VINN"
+        num_bits: 1
+      VINP:
+        direction: input
+        net_name: "VINP"
+        num_bits: 1
+  XCONSTGM:
+    lib_name: bag2_analog
+    cell_name: constant_gm
+    instpins:
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VN:
+        direction: output
+        net_name: "VN"
+        num_bits: 1
+      VP:
+        direction: output
+        net_name: "VP"
+        num_bits: 1
