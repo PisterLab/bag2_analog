@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import Dict
+from typing import Dict, Mapping
 
 import os
 import pkg_resources
@@ -23,7 +23,7 @@ class bag2_analog__constant_gm(Module):
         Module.__init__(self, database, self.yaml_file, parent=parent, prj=prj, **kwargs)
 
     @classmethod
-    def get_params_info(cls):
+    def get_params_info(cls) -> Mapping[str,str]:
         # type: () -> Dict[str, str]
         """Returns a dictionary from parameter names to descriptions.
 
@@ -34,14 +34,11 @@ class bag2_analog__constant_gm(Module):
         """
         return dict(
             res_side = '"n" or "p" to indicate on which side the the resistor is placed',
-            # res_params = 'Resistor parameters',
-            l_dict = 'Dictionary of channel and resistor lengths',
+            l_dict = 'Dictionary of channel and resistor lengths. Keys n, p, and res',
             w_dict = 'Dictionary of channel and resistor widhts',
             seg_dict = 'Dictionary of number of segments for transistors and resistors',
             th_dict = 'Dictionary of intent for ransistors and resistors',
             device_mult = 'Multiplier for device touching the resistor',
-            # mirr_n_params = 'NMOS device parameters',
-            # mirr_p_params = 'PMOS device parameters',
             bulk_conn = 'Bulk connection for the resistor'
         )
 

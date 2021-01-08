@@ -73,17 +73,17 @@ class bag2_analog__bandgap(Module):
         self.instances['XPP'].design(**p_params)
         self.instances['XCONSTGM'].design(**constgm_params)
 
-        res_map = dict(XFBP='fb',
-                       XFBN='fb',
-                       XDIFF='diff')
+        res_map = dict(XRFBP='fb',
+                       XRFBN='fb',
+                       XRDIFF='diff')
         for inst, k in res_map.items():
             self.instances[inst].design(**(res_params_dict[k]))
 
         # Array diode if necessary
         if diode_mult > 1:
-            self.array_instance('XDP', 
-                                [f'XDP<{diode_mult-1}:0>'], 
-                                [dict(PLUS='VDP', MINUS='VSS')]).
+            self.array_instance('DP', 
+                                [f'DP<{diode_mult-1}:0>'], 
+                                [dict(PLUS='VDP', MINUS='VSS')])
 
         # Reconnect amplifier biasing if necessary
         if amp_in_type == 'n':
