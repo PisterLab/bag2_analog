@@ -68,12 +68,12 @@ class bag2_analog__constant_gm(Module):
         device_mult = params['device_mult']
 
         n_params = dict(seg_in=seg_dict['n'],
-                        seg_out_list=[device_mult*seg_dict['n'] if res_side=='n' else seg_dict['n']],
+                        seg_out_list=[int(round(device_mult*seg_dict['n'])) if res_side=='n' else seg_dict['n']],
                         device_params=dict(l=l_dict['n'],
                                            w=w_dict['n'],
                                            intent=th_dict['n']))
         p_params = dict(seg_in=seg_dict['p'],
-                        seg_out_list=[device_mult*seg_dict['p'] if res_side=='p' else seg_dict['p']],
+                        seg_out_list=[int(round(device_mult*seg_dict['p'])) if res_side=='p' else seg_dict['p']],
                         device_params=dict(l=l_dict['p'],
                                            w=w_dict['p'],
                                            intent=th_dict['p']))
