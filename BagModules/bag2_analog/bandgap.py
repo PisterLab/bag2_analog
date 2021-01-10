@@ -86,7 +86,7 @@ class bag2_analog__bandgap(Module):
                                 [dict(PLUS='VDP', MINUS='VSS')])
 
         # Reconnect amplifier biasing if necessary
-        if amp_in_type == 'n':
+        if amp_in_type == 'p':
             self.reconnect_instance_terminal('XOTA', 'VGTAIL', 'VP')
 
         # Connect resistor bulk terminal
