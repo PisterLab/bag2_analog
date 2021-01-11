@@ -33,7 +33,7 @@ class bag2_analog__nmos4_astack(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
-            lch_list = 'Channel length in resolution units. Outside in ordering.',
+            lch_list = 'Channel length in resolution units. Outside-in ordering.',
             w_list = 'Channel width in resolution units. Outside in ordering.',
             stack = 'Number of stacked devices',
             intent_list = 'Threshold flavor. Ordering is outside in.',

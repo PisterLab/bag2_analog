@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import Mapping
+from typing import Dict
 
 import os
 import pkg_resources
@@ -9,21 +9,21 @@ from bag.design.module import Module
 
 
 # noinspection PyPep8Naming
-class bag2_analog__cascode_p(Module):
-    """Module for library bag2_analog cell cascode_p.
+class bag2_analog__regulator_ldo_series(Module):
+    """Module for library bag2_analog cell regulator_ldo_series.
 
     Fill in high level description here.
     """
     yaml_file = pkg_resources.resource_filename(__name__,
                                                 os.path.join('netlist_info',
-                                                             'cascode_p.yaml'))
+                                                             'regulator_ldo_series.yaml'))
 
 
     def __init__(self, database, parent=None, prj=None, **kwargs):
         Module.__init__(self, database, self.yaml_file, parent=parent, prj=prj, **kwargs)
 
     @classmethod
-    def get_params_info(cls) -> Mapping[str,str]:
+    def get_params_info(cls):
         # type: () -> Dict[str, str]
         """Returns a dictionary from parameter names to descriptions.
 
@@ -33,13 +33,9 @@ class bag2_analog__cascode_p(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
-            lch = 'Channel length',
-            w_dict = 'Dictionary of device widths',
-            seg_dict = 'Dictionary of segments per device',
-            th_dict = 'Dictionary of threshold flavors'
         )
 
-    def design(self, **params):
+    def design(self):
         """To be overridden by subclasses to design this module.
 
         This method should fill in values for all parameters in
@@ -55,12 +51,5 @@ class bag2_analog__cascode_p(Module):
         restore_instance()
         array_instance()
         """
-        name_mapping = {'XP<0>':'outer', 'XP<1>':'inner'}
+        pass
 
-        lch = params['lch']
-
-        for device_name, dict_key in name_mapping.items():
-            w = params['w_dict'][dict_key]
-            seg = params['seg_dict'][dict_key]
-            intent = params['th_dict'][dict_key]
-            self.instances[device_name].design(w=w, l=lch, nf=seg, intent=intent)

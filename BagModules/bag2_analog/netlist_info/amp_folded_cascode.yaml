@@ -96,7 +96,7 @@ instances:
     instpins: {}
   XCASCODE:
     lib_name: bag2_analog
-    cell_name: cascode_dual
+    cell_name: cascode_core
     instpins:
       VSS:
         direction: inputOutput
@@ -107,42 +107,42 @@ instances:
         net_name: "VDD"
         num_bits: 1
       VNMIDB:
-        direction: inputOutput
+        direction: 
         net_name: "VNMIDB"
         num_bits: 1
       VOUTB:
-        direction: output
+        direction: 
         net_name: "VOUTN"
         num_bits: 1
       VPMIDB:
-        direction: inputOutput
+        direction: 
         net_name: "VPMIDB"
         num_bits: 1
       VN<0>:
-        direction: input
+        direction: 
         net_name: "VN<0>"
         num_bits: 1
       VN<1>:
-        direction: input
+        direction: 
         net_name: "VN<1>"
         num_bits: 1
       VP<1>:
-        direction: input
+        direction: 
         net_name: "VP<1>"
         num_bits: 1
       VP<0>:
-        direction: input
+        direction: 
         net_name: "VP<0>"
         num_bits: 1
       VNMIDA:
-        direction: inputOutput
+        direction: 
         net_name: "VNMIDA"
         num_bits: 1
       VOUTA:
-        direction: output
+        direction: 
         net_name: "VOUTP"
         num_bits: 1
       VPMIDA:
-        direction: inputOutput
+        direction: 
         net_name: "VPMIDA"
         num_bits: 1

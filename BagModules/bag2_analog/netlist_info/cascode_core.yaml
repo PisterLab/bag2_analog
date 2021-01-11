@@ -1,0 +1,76 @@
+lib_name: bag2_analog
+cell_name: cascode_core
+pins: [ "GP<0>", "DP", "VSS", "VDD", "DN", "MP<0>", "MN<0>", "GN<0>" ]
+instances:
+  XN:
+    lib_name: bag2_analog
+    cell_name: nmos4_astack
+    instpins:
+      D:
+        direction: inputOutput
+        net_name: "DN"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "GN<0>"
+        num_bits: 1
+  PIN2:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN6:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN11:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN12:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  XP:
+    lib_name: bag2_analog
+    cell_name: pmos4_astack
+    instpins:
+      D:
+        direction: inputOutput
+        net_name: "DP"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "GP<0>"
+        num_bits: 1

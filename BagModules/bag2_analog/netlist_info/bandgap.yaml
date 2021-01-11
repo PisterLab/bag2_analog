@@ -42,17 +42,17 @@ instances:
         direction: inputOutput
         net_name: "VOUT_AMP"
         num_bits: 1
-  XRFBN:
+  XRDIFF:
     lib_name: bag2_analog
     cell_name: res_multistrip
     instpins:
       PLUS:
         direction: inputOutput
-        net_name: "VBG"
+        net_name: "VINP"
         num_bits: 1
       MINUS:
         direction: inputOutput
-        net_name: "VINN"
+        net_name: "VDP"
         num_bits: 1
       BULK:
         direction: inputOutput
@@ -74,33 +74,21 @@ instances:
         direction: inputOutput
         net_name: "BULK"
         num_bits: 1
-  XRDIFF:
+  XRFBN:
     lib_name: bag2_analog
     cell_name: res_multistrip
     instpins:
       PLUS:
         direction: inputOutput
-        net_name: "VINP"
+        net_name: "VBG"
         num_bits: 1
       MINUS:
         direction: inputOutput
-        net_name: "VDP"
+        net_name: "VINN"
         num_bits: 1
       BULK:
         direction: inputOutput
         net_name: "BULK"
-        num_bits: 1
-  DP:
-    lib_name: PRIMLIB
-    cell_name: dn
-    instpins:
-      MINUS:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      PLUS:
-        direction: inputOutput
-        net_name: "VDP"
         num_bits: 1
   DN:
     lib_name: PRIMLIB
@@ -113,6 +101,18 @@ instances:
       PLUS:
         direction: inputOutput
         net_name: "VINN"
+        num_bits: 1
+  DP:
+    lib_name: PRIMLIB
+    cell_name: dn
+    instpins:
+      MINUS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      PLUS:
+        direction: inputOutput
+        net_name: "VDP"
         num_bits: 1
   PIN3:
     lib_name: basic
