@@ -70,13 +70,15 @@ class bag2_analog__cascode_core(Module):
         if n_stack > 1:
             suffix_mn = f'<0>' if n_stack==2 else f'<{n_stack-2}:0>'
             self.reconnect_instance_terminal('XN', f'G{suffix_gn}', f'GN{suffix_gn}')
-            self.reconnect_instance_terminal('XN', f'm{suffix_mn}', f'MN{suffix_mn}')
+            self.reconnect_instance_terminal('XN', f'm{suffix_mn}', f'DN{suffix_mn}')
+            self.reconnect_instance_terminal('XN', f'D', f'DN<{n_stack-1}>')
             self.rename_pin('GN<0>', f'GN{suffix_gn}')
-            self.rename_pin('MN<0>', f'MN{suffix_mn}')
+            self.rename_pin('DN<0>', f'DN{suffix_gn}')
 
         if p_stack > 1:
             suffix_mp = f'<0>' if p_stack==2 else f'<{p_stack-2}:0>'
             self.reconnect_instance_terminal('XP', f'G{suffix_gp}', f'GP{suffix_gp}')
-            self.reconnect_instance_terminal('XP', f'm{suffix_mp}', f'MP{suffix_mp}')
+            self.reconnect_instance_terminal('XP', f'm{suffix_mp}', f'DP{suffix_mp}')
+            self.reconnect_instance_terminal('XP', f'D', f'DP<{p_stack-1}>')
             self.rename_pin('GP<0>', f'GP{suffix_gp}')
-            self.rename_pin('MP<0>', f'MP{suffix_mp}')
+            self.rename_pin('DP<0>', f'DP{suffix_gp}')
