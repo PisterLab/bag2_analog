@@ -55,18 +55,18 @@ instances:
         net_name: "VINP"
         num_bits: 1
       VN<0>:
-        direction: inputOutput
+        direction: 
         net_name: "VN<0>"
         num_bits: 1
       VN<1>:
-        direction: inputOutput
+        direction: 
         net_name: "VN<1>"
         num_bits: 1
       VP<0>:
-        direction: inputOutput
+        direction: 
         net_name: "VP<0>"
         num_bits: 1
       VP<1>:
-        direction: inputOutput
+        direction: 
         net_name: "VP<1>"
         num_bits: 1

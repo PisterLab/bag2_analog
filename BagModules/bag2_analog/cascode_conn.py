@@ -35,9 +35,10 @@ class bag2_analog__cascode_conn(Module):
             p_params = 'pmos4_astack parameters',
             n_params = 'nmos4_astack parameters',
             res_params = 'Resistor parameters',
-            n_drain_conn = 'List of drain connections for the NMOS of the A (left) side',
-            p_drain_conn = 'List of drain connections for the PMOS of the A (left) side',
+            n_drain_conn = 'List of drain connections for the NMOS of the A (left) side. Leave empty for no connection',
+            p_drain_conn = 'List of drain connections for the PMOS of the A (left) side. Leave empty for no connection',
             res_conn = 'Dictionary (PLUS, MINUS, BULK) of drain connections. Leave empty to remove the resistor.',
+            diff_out = 'Boolean. False to remove "DA" pin (which would normally connect NMOS and PMOS on the A-side'
         )
 
     def design(self, **params):
@@ -87,10 +88,12 @@ class bag2_analog__cascode_conn(Module):
         assert len(n_drain_conn_list)==n_stack, f'n_drain connection list should have {n_stack} items (has {len(n_drain_conn_list)})'
         assert len(p_drain_conn_list)==p_stack, f'p_drain connection list should have {p_stack} items (has {len(p_drain_conn_list)})'
 
+        n_drain_conn_list = [conn if conn else f'DNA<{i}>' for i, conn in enumerate(n_drain_conn_list)]
+        p_drain_conn_list = [conn if conn else f'DPA<{i}>' for i, conn in enumerate(p_drain_conn_list)]
         DNA_conn = ','.join(n_drain_conn_list[::-1])
         DPA_conn = ','.join(p_drain_conn_list[::-1])
 
-        if DNA_conn[-1] != 'DA' and DPA_conn[-1] != 'DA':
+        if not params['diff_out']:
             self.remove_pin('DA')
 
         self.reconnect_instance_terminal('XCOREA', f'DN<{n_stack-1}:0>', DNA_conn)
