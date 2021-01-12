@@ -1,6 +1,6 @@
 lib_name: bag2_analog
 cell_name: cascode_core
-pins: [ "GP<0>", "DP<0>", "VSS", "VDD", "DN<0>", "GN<0>" ]
+pins: [ "GP<0>", "DP<0>", "VSS", "VDD", "DN<0>", "BN", "BP", "GN<0>" ]
 instances:
   XN:
     lib_name: bag2_analog
@@ -16,7 +16,7 @@ instances:
         num_bits: 1
       B:
         direction: inputOutput
-        net_name: "VSS"
+        net_name: "BN"
         num_bits: 1
       G:
         direction: inputOutput
@@ -31,6 +31,14 @@ instances:
     cell_name: iopin
     instpins: {}
   PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN9:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN10:
     lib_name: basic
     cell_name: iopin
     instpins: {}
@@ -60,7 +68,7 @@ instances:
         num_bits: 1
       B:
         direction: inputOutput
-        net_name: "VDD"
+        net_name: "BP"
         num_bits: 1
       G:
         direction: inputOutput
