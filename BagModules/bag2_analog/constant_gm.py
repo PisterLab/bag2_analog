@@ -7,7 +7,6 @@ import pkg_resources
 
 from bag.design.module import Module
 
-
 # noinspection PyPep8Naming
 class bag2_analog__constant_gm(Module):
     """Module for library bag2_analog cell constant_gm.

@@ -2,22 +2,10 @@ lib_name: bag2_analog
 cell_name: regulator_ldo_series
 pins: [ "VREF", "VDD", "VSS", "VREG" ]
 instances:
-  XAMP:
+  XBIAS:
     lib_name: bag2_analog
-    cell_name: amp_folded_cascode
+    cell_name: constant_gm
     instpins:
-      VGP<1:0>:
-        direction: inputOutput
-        net_name: "VGP<1:0>"
-        num_bits: 2
-      VGN<1:0>:
-        direction: inputOutput
-        net_name: "VGN<1:0>"
-        num_bits: 2
-      VOUT:
-        direction: output
-        net_name: "VG"
-        num_bits: 1
       VSS:
         direction: inputOutput
         net_name: "VSS"
@@ -26,41 +14,13 @@ instances:
         direction: inputOutput
         net_name: "VDD"
         num_bits: 1
-      VNMIDA:
+      VN:
         direction: output
-        net_name: "VNMIDA"
+        net_name: "VN"
         num_bits: 1
-      VNMIDB:
+      VP:
         direction: output
-        net_name: "VNMIDB"
-        num_bits: 1
-      VOUTN:
-        direction: output
-        net_name: "net1"
-        num_bits: 1
-      VOUTP:
-        direction: output
-        net_name: "net2"
-        num_bits: 1
-      VPMIDA:
-        direction: output
-        net_name: "VPMIDA"
-        num_bits: 1
-      VPMIDB:
-        direction: output
-        net_name: "VPMIDB"
-        num_bits: 1
-      VGTAIL:
-        direction: input
-        net_name: "VGTAIL"
-        num_bits: 1
-      VINN:
-        direction: input
-        net_name: "VREG"
-        num_bits: 1
-      VINP:
-        direction: input
-        net_name: "VREF"
+        net_name: "VP"
         num_bits: 1
   PIN0:
     lib_name: basic
@@ -97,6 +57,34 @@ instances:
       G:
         direction: inputOutput
         net_name: "VG"
+        num_bits: 1
+  XAMP:
+    lib_name: bag2_analog
+    cell_name: amp_diff_mirr
+    instpins:
+      VGTAIL:
+        direction: input
+        net_name: "VGTAIL"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VOUT:
+        direction: output
+        net_name: "VG"
+        num_bits: 1
+      VINN:
+        direction: input
+        net_name: "VREG"
+        num_bits: 1
+      VINP:
+        direction: input
+        net_name: "VREF"
         num_bits: 1
   XRES:
     lib_name: bag2_analog

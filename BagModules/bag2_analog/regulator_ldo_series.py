@@ -109,3 +109,12 @@ class bag2_analog__regulator_ldo_series(Module):
         if series_type == 'p':
             self.reconnect_instance_terminal('XAMP', 'VINP', 'VREG')
             self.reconnect_instance_terminal('XAMP', 'VINN', 'VREF')
+
+        # TODO Design biasing, this biasing willlikely change
+        res_side = 'n' if amp_params['in_type']=='n' else 'p'
+        self.instances['XBIAS'].design(res_side=res_side, **biasing_params)
+
+        if amp_params['in_type'] == 'n':
+            self.reconnect_instance_terminal('XBIAS', 'VN', 'VGTAIL')
+        elif amp_params['in_type'] == 'p':
+            self.reconnect_instance_terminal('XBIAS', 'VP', 'VGTAIL')
