@@ -1,6 +1,6 @@
 lib_name: bag2_analog
 cell_name: amp_sf
-pins: [ "VDD", "VSS", "VN", "VP", "VOUT" ]
+pins: [ "VDD", "VSS", "VN", "VP", "VOUT", "VIN" ]
 instances:
   XP:
     lib_name: bag2_analog
@@ -49,6 +49,10 @@ instances:
   PIN0:
     lib_name: basic
     cell_name: iopin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: ipin
     instpins: {}
   PIN3:
     lib_name: basic
