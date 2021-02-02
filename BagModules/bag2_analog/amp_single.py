@@ -117,10 +117,15 @@ class bag2_analog__amp_single(Module):
                 mn_suffix = f'<{n_stack-2}:0>' if n_stack > 2 else '<0>'
                 self.reconnect_instance_terminal('XN', f'm{mn_suffix}', mn_net)
 
-            # Adjust cell's intermediate drain pins
-            mn_idx_list = [i for i, mn_conn in enumerate(mn_conn_list) if mn_conn==f'DN<{i}>']
-            dn_pin = bus_net(mn_idx_list, 'DN')
-            self.rename_pin('DN<0>', dn_pin)
+                # Adjust cell's intermediate drain pins
+                mn_idx_list = [i for i, mn_conn in enumerate(mn_conn_list) if mn_conn==f'DN<{i}>']
+                dn_pin = bus_net(mn_idx_list, 'DN')
+                if len(mn_idx_list) > 0:
+                    self.rename_pin('DN<0>', dn_pin)
+                else:
+                    self.remove_pin('DN<0>')
+            else:
+                self.remove_pin('DN<0>')
 
             # Connect final drain
             dn_conn = 'VDD' if p_stack == 0 else f'DMID'
@@ -168,10 +173,15 @@ class bag2_analog__amp_single(Module):
                 mp_suffix = f'<{p_stack-2}:0>' if p_stack > 2 else '<0>'
                 self.reconnect_instance_terminal('XP', f'm{mp_suffix}', mp_net)
 
-            # Adjust cell's intermediate drain pins
-            mp_idx_list = [i for i, mp_conn in enumerate(mp_conn_list) if mp_conn==f'DP<{i}>']
-            dp_pin = bus_net(mp_idx_list, 'DP')
-            self.rename_pin('DP<0>', dp_pin)
+                # Adjust cell's intermediate drain pins
+                mp_idx_list = [i for i, mp_conn in enumerate(mp_conn_list) if mp_conn==f'DP<{i}>']
+                dp_pin = bus_net(mp_idx_list, 'DP')
+                if len(mp_idx_list) > 0:
+                    self.rename_pin('DP<0>', dp_pin)
+                else:
+                    self.remove_pin('DP<0>')
+            else:
+                self.remove_pin('DP<0>')
 
             # Connect final drain
             dp_conn = 'VSS' if n_stack == 0 else f'DMID'
