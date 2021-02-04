@@ -106,11 +106,14 @@ class bag2_analog__amp_folded_cascode(Module):
         p_drain_conn = cascode_params['p_drain_conn']
         self.reconnect_instance_terminal('XCASCODE', 'DPB<0>', 'VPMIDB')
         self.reconnect_instance_terminal('XCASCODE', 'DNB<0>', 'VNMIDB')
+        self.reconnect_instance_terminal('XCASCODE', 'DPA<0>', 'VPMIDA')
+        self.reconnect_instance_terminal('XCASCODE', 'DNA<0>', 'VNMIDA')
         
         # Remove unconnected mid-connection pins
         if in_type == 'n' and n_drain_conn[0]:
             self.remove_pin('VNMIDA')
             self.reconnect_instance_terminal('XCASCODE', 'DPA<0>', 'VPMIDA')
+
         if in_type == 'p' and p_drain_conn[0]:
             self.remove_pin('VPMIDA')
             self.reconnect_instance_terminal('XCASCODE', 'DNA<0>', 'VNMIDA')

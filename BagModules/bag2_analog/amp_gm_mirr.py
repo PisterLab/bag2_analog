@@ -34,8 +34,12 @@ class bag2_analog__amp_gm_mirr(Module):
         """
         return dict(
             in_type = '"p" or "n" for NMOS or PMOS input pair',
-            mirr_params_dict = 'The output-facing load is key "load_out", the non-output-facing load is "load", and the flipped mirror is key "flip_out"',
-            diffpair_params = 'Input differential pair and tail parameters'
+            l_dict = 'Channel lengths for devices (in, load, flip)',
+            w_dict = 'Channel widths for devices (in, load, flip)',
+            th_dict = 'Device threshold flavors (in, load, flip)',
+            seg_dict = 'Number of device segments (in, load, load_copy, flip)',
+            # mirr_params_dict = 'The output-facing load is key "load_out", the non-output-facing load is "load", and the flipped mirror is key "flip_out"',
+            # diffpair_params = 'Input differential pair and tail parameters'
         )
 
     def design(self, **params):
@@ -55,11 +59,12 @@ class bag2_analog__amp_gm_mirr(Module):
         array_instance()
         """
         in_type = params['in_type']
-        mirr_params_dict = params['mirr_params_dict']
-        diffpair_params = params['diffpair_params']
-
-        for mirr_params in mirr_params_dict.values():
-            assert len(mirr_params['seg_out_list'])==1, f'Mirrors should have only 1 output device'
+        l_dict = params['l_dict']
+        w_dict = params['w_dict']
+        th_dict = params['th_dict']
+        seg_dict = params['seg_dict']
+        # mirr_params_dict = params['mirr_params_dict']
+        # diffpair_params = params['diffpair_params']
 
         # Change input pair type as necessary
         if in_type.lower() == 'p':
@@ -114,7 +119,28 @@ class bag2_analog__amp_gm_mirr(Module):
             raise ValueError(f"in_type {in_type} should be 'p' or 'n'")
 
         # Design instances
+        diffpair_params = dict(lch_dict={'in' : l_dict['in'],
+                                         'tail' : l_dict['tail']},
+                               w_dict={'in' : w_dict['in'],
+                                       'tail' : w_dict['tail']},
+                               th_dict={'in' : th_dict['in'],
+                                        'tail' : th_dict['tail']},
+                               seg_dict={'in' : seg_dict['in'],
+                                         'tail' : seg_dict['tail']})
+
+        load_params = dict(device_params=dict(w=w_dict['load'],
+                                              l=l_dict['load'],
+                                              intent=th_dict['load']),
+                                         seg_in=seg_dict['load'],
+                                         seg_out_list=[seg_dict['load_copy']])
+
+        flip_params = dict(device_params=dict(w=w_dict['flip'],
+                                              l=l_dict['flip'],
+                                              intent=th_dict['flip']),
+                                         seg_in=seg_dict['flip'],
+                                         seg_out_list=[seg_dict['flip']])
+
         self.instances['XDIFFPAIR'].design(**diffpair_params)
-        self.instances['XMIRR_LOADOUT'].design(**(mirr_params_dict['load_out']))
-        self.instances['XMIRR_LOAD'].design(**(mirr_params_dict['load']))
-        self.instances['XMIRR_FLIPOUT'].design(**(mirr_params_dict['flip_out']))
+        self.instances['XMIRR_LOADOUT'].design(**load_params)
+        self.instances['XMIRR_LOAD'].design(**load_params)
+        self.instances['XMIRR_FLIPOUT'].design(**flip_params)
