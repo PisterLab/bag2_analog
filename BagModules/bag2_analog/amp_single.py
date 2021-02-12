@@ -138,6 +138,8 @@ class bag2_analog__amp_single(Module):
         else:
             # Remove if it isn't necessary
             self.delete_instance('XN')
+            self.remove_pin('GN<0>')
+            self.remove_pin('DN<0>')
             self.reconnect_instance_terminal('XP', 'D', 'VSS')
             assert in_conn != 'DMID', "Deleted NMOS stack, input is shorted to ground"
             assert out_conn != 'DMID', "Deleted NMOS stack, output is shorted to ground"
@@ -192,6 +194,8 @@ class bag2_analog__amp_single(Module):
             self.reconnect_instance_terminal('XP', 'D', dp_conn)
         else:
             self.delete_instance('XP')
+            self.remove_pin('GP<0>')
+            self.remove_pin('DP<0>')
             self.reconnect_instance_terminal('XN', 'D', 'VDD')
             assert in_conn != 'DMID', "Deleted PMOS stack, input is shorted to supply"
             assert out_conn != 'DMID', "Deleted PMOS stack, output is shorted to supply"
