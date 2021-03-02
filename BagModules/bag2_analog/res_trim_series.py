@@ -33,6 +33,7 @@ class bag2_analog__res_trim_series(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
+            always_one = 'True to have one resistor unit that cannot be shorted.',
             res_params = 'Single multistrip resistor parameters',
             sw_params = 'Switch parameters. All switches are identical here.',
             res_groupings = 'List of number of consecutive units for each switch to wrap around. e.g. [1, 2, 3] = switch 0 wraps around 1 resistor, switch 1 wraps around 2 in series, etc.',
@@ -55,6 +56,7 @@ class bag2_analog__res_trim_series(Module):
         restore_instance()
         array_instance()
         """
+        always_one = params['always_one']
         res_params = params['res_params']
         base_num_unit = res_params['num_unit']
         sw_params = params['sw_params']
@@ -66,13 +68,16 @@ class bag2_analog__res_trim_series(Module):
         num_sw = len(res_groupings)
 
         ### Resistors
-        self.instances['XRBASE'].design(**res_params)
-        self.reconnect_instance_terminal('XRBASE', 'BULK', bulk_conn)
+        if always_one:
+            self.instances['XRBASE'].design(**res_params)
+            self.reconnect_instance_terminal('XRBASE', 'BULK', bulk_conn)
+        else:
+            self.delete_instance('XRBASE')
 
         # Arraying and connecting the resistors in a string
         conn_dict_list = []
         for i in range(num_sw):
-            plus_conn = f'mid<{i}>'
+            plus_conn = 'A' if (not always_one and i==0) else f'mid<{i}>'
             minus_conn = 'Z' if i==num_sw-1 else f'mid<{i+1}>'
             conn_dict_list.append(dict(PLUS=plus_conn, MINUS=minus_conn, BULK=bulk_conn))
 
@@ -102,7 +107,8 @@ class bag2_analog__res_trim_series(Module):
 
         # Arraying and wiring up the switches
         if num_sw > 1:
-            self.array_instance('XSW', [f'XSW<{num_sw-1}:0>'], [dict(D=f'mid<{num_sw-1}:0>',
+            d_conn = f'mid<{num_sw-1}:0>' if always_one else f'mid<{num_sw-1}:1>,A'
+            self.array_instance('XSW', [f'XSW<{num_sw-1}:0>'], [dict(D=d_conn,
                                                                      S=f'Z,mid<{num_sw-1}:1>',
                                                                      BP='VDD',
                                                                      BN='VSS',
@@ -115,7 +121,7 @@ class bag2_analog__res_trim_series(Module):
                 self.rename_pin('CTRLb', f'CTRLb<{num_sw-1}:0>')
         elif num_sw == 1:
             self.instances['XSW'].design(**sw_params)
-            self.reconnect_instance_terminal('XSW', 'D', 'mid<0>')
+            self.reconnect_instance_terminal('XSW', 'D', 'mid<0>' if always_one else 'A')
 
         if num_sw == 0:
             self.delete_instance('XSW')
