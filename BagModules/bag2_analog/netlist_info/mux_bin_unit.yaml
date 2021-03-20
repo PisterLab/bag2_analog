@@ -4,7 +4,7 @@ pins: [ "VDD", "VSS", "S", "VOUT", "VIN<1:0>", "Sb" ]
 instances:
   XSW1:
     lib_name: bag2_analog
-    cell_name: switch
+    cell_name: switch_mos
     instpins:
       BN:
         direction: input
@@ -32,7 +32,7 @@ instances:
         num_bits: 1
   XSW0:
     lib_name: bag2_analog
-    cell_name: switch
+    cell_name: switch_mos
     instpins:
       BN:
         direction: input
