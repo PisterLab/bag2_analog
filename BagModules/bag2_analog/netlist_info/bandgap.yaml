@@ -90,30 +90,6 @@ instances:
         direction: inputOutput
         net_name: "BULK"
         num_bits: 1
-  DN:
-    lib_name: PRIMLIB
-    cell_name: dn
-    instpins:
-      MINUS:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      PLUS:
-        direction: inputOutput
-        net_name: "VINN"
-        num_bits: 1
-  DP:
-    lib_name: PRIMLIB
-    cell_name: dn
-    instpins:
-      MINUS:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      PLUS:
-        direction: inputOutput
-        net_name: "VDP"
-        num_bits: 1
   PIN3:
     lib_name: basic
     cell_name: iopin
