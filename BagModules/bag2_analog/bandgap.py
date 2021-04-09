@@ -80,10 +80,10 @@ class bag2_analog__bandgap(Module):
             self.instances[inst].design(**(res_params_dict[k]))
 
         # Array diode if necessary
-        if diode_mult > 1:
-            self.array_instance('DP', 
-                                [f'DP<{diode_mult-1}:0>'], 
-                                [dict(PLUS='VDP', MINUS='VSS')])
+        # if diode_mult > 1:
+        #     self.array_instance('DP',
+        #                         [f'DP<{diode_mult-1}:0>'],
+        #                         [dict(PLUS='VDP', MINUS='VSS')])
 
         # Reconnect amplifier biasing if necessary
         if amp_in_type == 'p':
