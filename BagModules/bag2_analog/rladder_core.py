@@ -70,8 +70,6 @@ class bag2_analog__rladder_core(Module):
                                                         BULK=bulk_conn)])
 
         # Design instances
-        # self.instances['XR'][0].parameters = res_params
-        # print("*** WARNING *** (rladder_core) Check generated ideal passive values")
         self.instances['XR'][0].design(**res_params)
 
         # Adjust resistor bulk connection if necessary

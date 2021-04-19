@@ -3,20 +3,16 @@ cell_name: rladder_core
 pins: [ "VDD", "VSS", "BULK", "out<0>" ]
 instances:
   XR:
-    lib_name: bag2_analog
-    cell_name: res_multistrip
+    lib_name: BAG_prim
+    cell_name: res_standard
     instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
       MINUS:
         direction: inputOutput
         net_name: "out<0>"
         num_bits: 1
-      BULK:
+      PLUS:
         direction: inputOutput
-        net_name: "BULK"
+        net_name: "VDD"
         num_bits: 1
   PIN3:
     lib_name: basic
