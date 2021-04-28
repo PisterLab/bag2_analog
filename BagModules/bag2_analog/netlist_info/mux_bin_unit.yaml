@@ -1,0 +1,84 @@
+lib_name: bag2_analog
+cell_name: mux_bin_unit
+pins: [ "VDD", "VSS", "S", "VOUT", "VIN<1:0>", "Sb" ]
+instances:
+  XSW1:
+    lib_name: bag2_analog
+    cell_name: switch_mos
+    instpins:
+      BN:
+        direction: input
+        net_name: "VSS"
+        num_bits: 1
+      CTRLb:
+        direction: input
+        net_name: "Sb"
+        num_bits: 1
+      CTRL:
+        direction: input
+        net_name: "S"
+        num_bits: 1
+      BP:
+        direction: input
+        net_name: "VDD"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VOUT"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VIN<1>"
+        num_bits: 1
+  XSW0:
+    lib_name: bag2_analog
+    cell_name: switch_mos
+    instpins:
+      BN:
+        direction: input
+        net_name: "VSS"
+        num_bits: 1
+      CTRLb:
+        direction: input
+        net_name: "S"
+        num_bits: 1
+      CTRL:
+        direction: input
+        net_name: "Sb"
+        num_bits: 1
+      BP:
+        direction: input
+        net_name: "VDD"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VOUT"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VIN<0>"
+        num_bits: 1
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}

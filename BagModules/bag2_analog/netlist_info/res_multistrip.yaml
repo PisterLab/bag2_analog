@@ -1,0 +1,28 @@
+lib_name: bag2_analog
+cell_name: res_multistrip
+pins: [ "PLUS", "MINUS", "BULK" ]
+instances:
+  XR:
+    lib_name: BAG_prim
+    cell_name: res_standard
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "PLUS"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "MINUS"
+        num_bits: 1
+  PIN2:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}

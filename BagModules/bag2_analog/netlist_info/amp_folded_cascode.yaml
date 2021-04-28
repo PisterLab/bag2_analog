@@ -1,0 +1,140 @@
+lib_name: bag2_analog
+cell_name: amp_folded_cascode
+pins: [ "VDD", "VSS", "VINN", "VINP", "VOUT", "VGTAIL", "VOUTP", "VOUTN", "VNMIDB", "VNMIDA", "VPMIDB", "VGP<1:0>", "VGN<1:0>", "VPMIDA" ]
+instances:
+  XDIFFPAIR:
+    lib_name: bag2_analog
+    cell_name: diffpair_n
+    instpins:
+      VGTAIL:
+        direction: input
+        net_name: "VGTAIL"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VOUTN:
+        direction: output
+        net_name: "VPMIDB"
+        num_bits: 1
+      VOUTP:
+        direction: output
+        net_name: "VPMIDA"
+        num_bits: 1
+      VINN:
+        direction: input
+        net_name: "VINP"
+        num_bits: 1
+      VINP:
+        direction: input
+        net_name: "VINN"
+        num_bits: 1
+  PIN12:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN11:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN14:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN15:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN18:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN16:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN17:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN6:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  XCASCODE:
+    lib_name: bag2_analog
+    cell_name: cascode_conn
+    instpins:
+      BN:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      BP:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      DB:
+        direction: output
+        net_name: "VOUTP"
+        num_bits: 1
+      DPB:
+        direction: inputOutput
+        net_name: "VPMIDB"
+        num_bits: 1
+      DNB:
+        direction: inputOutput
+        net_name: "VNMIDB"
+        num_bits: 1
+      GN<0>:
+        direction: input
+        net_name: "VGN<0>"
+        num_bits: 1
+      GP<0>:
+        direction: input
+        net_name: "VGP<0>"
+        num_bits: 1
+      DA:
+        direction: output
+        net_name: "VOUTN"
+        num_bits: 1
+      DPA:
+        direction: inputOutput
+        net_name: "VPMIDA"
+        num_bits: 1
+      DNA:
+        direction: inputOutput
+        net_name: "VNMIDA"
+        num_bits: 1

@@ -1,0 +1,156 @@
+lib_name: bag2_analog
+cell_name: cascode_dual
+pins: [ "VPMIDB", "VPMIDA", "VNMIDB", "VNMIDA", "VOUTB", "VOUTA", "VSS", "VDD", "VN<1:0>", "VP<1:0>" ]
+instances:
+  XNB:
+    lib_name: bag2_analog
+    cell_name: cascode_n
+    instpins:
+      M:
+        direction: inputOutput
+        net_name: "VNMIDB"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VN<0>"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTB"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G<1>:
+        direction: inputOutput
+        net_name: "VN<1>"
+        num_bits: 1
+  XNA:
+    lib_name: bag2_analog
+    cell_name: cascode_n
+    instpins:
+      M:
+        direction: inputOutput
+        net_name: "VNMIDA"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VN<0>"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTA"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G<1>:
+        direction: inputOutput
+        net_name: "VN<1>"
+        num_bits: 1
+  PIN0:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN13:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN7:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN8:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN9:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN10:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN11:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN12:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  XPA:
+    lib_name: bag2_analog
+    cell_name: cascode_p
+    instpins:
+      M:
+        direction: inputOutput
+        net_name: "VPMIDA"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VP<0>"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTA"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G<1>:
+        direction: inputOutput
+        net_name: "VP<1>"
+        num_bits: 1
+  XPB:
+    lib_name: bag2_analog
+    cell_name: cascode_p
+    instpins:
+      M:
+        direction: inputOutput
+        net_name: "VPMIDB"
+        num_bits: 1
+      G<0>:
+        direction: inputOutput
+        net_name: "VP<0>"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VOUTB"
+        num_bits: 1
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G<1>:
+        direction: inputOutput
+        net_name: "VP<1>"
+        num_bits: 1

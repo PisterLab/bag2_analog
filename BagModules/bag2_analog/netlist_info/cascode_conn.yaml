@@ -1,0 +1,140 @@
+lib_name: bag2_analog
+cell_name: cascode_conn
+pins: [ "GP<0>", "GN<0>", "DNB", "DNA", "VDD", "VSS", "BP", "BN", "DA", "DPA", "DB", "DPB" ]
+instances:
+  XCOREA:
+    lib_name: bag2_analog
+    cell_name: cascode_core
+    instpins:
+      GP<0>:
+        direction: input
+        net_name: "GP<0>"
+        num_bits: 1
+      BN:
+        direction: inputOutput
+        net_name: "BN"
+        num_bits: 1
+      BP:
+        direction: inputOutput
+        net_name: "BP"
+        num_bits: 1
+      DP<0>:
+        direction: inputOutput
+        net_name: "DA"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      DN<0>:
+        direction: inputOutput
+        net_name: "DA"
+        num_bits: 1
+      GN<0>:
+        direction: input
+        net_name: "GN<0>"
+        num_bits: 1
+  XCOREB:
+    lib_name: bag2_analog
+    cell_name: cascode_core
+    instpins:
+      GP<0>:
+        direction: input
+        net_name: "GP<0>"
+        num_bits: 1
+      BN:
+        direction: inputOutput
+        net_name: "BN"
+        num_bits: 1
+      BP:
+        direction: inputOutput
+        net_name: "BP"
+        num_bits: 1
+      DP<0>:
+        direction: inputOutput
+        net_name: "DB"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      DN<0>:
+        direction: inputOutput
+        net_name: "DB"
+        num_bits: 1
+      GN<0>:
+        direction: input
+        net_name: "GN<0>"
+        num_bits: 1
+  PIN1:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN13:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN12:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN11:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN10:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN7:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN6:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  XR:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "PLUS"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "MINUS"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "BULK"
+        num_bits: 1
+  PIN3:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}

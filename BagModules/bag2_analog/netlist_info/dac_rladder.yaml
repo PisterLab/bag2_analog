@@ -1,0 +1,80 @@
+lib_name: bag2_analog
+cell_name: dac_rladder
+pins: [ "VDD", "VSS", "S", "VOUT" ]
+instances:
+  XMUX:
+    lib_name: bag2_analog
+    cell_name: mux_bin
+    instpins:
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VOUT:
+        direction: output
+        net_name: "VOUT"
+        num_bits: 1
+      S:
+        direction: input
+        net_name: "S"
+        num_bits: 1
+      VIN<1:0>:
+        direction: input
+        net_name: "mid<1:0>"
+        num_bits: 2
+  XRLADDER:
+    lib_name: bag2_analog
+    cell_name: rladder_core
+    instpins:
+      BULK:
+        direction: inputOutput
+        net_name: "net03"
+        num_bits: 1
+      out<0>:
+        direction: output
+        net_name: "mid<0>"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  XNOCONN_UPPER:
+    lib_name: basic
+    cell_name: noConn
+    instpins:
+      noConn:
+        direction: inputOutput
+        net_name: "net5"
+        num_bits: 1
+  XNOCONN_LOWER:
+    lib_name: basic
+    cell_name: noConn
+    instpins:
+      noConn:
+        direction: inputOutput
+        net_name: "net6"
+        num_bits: 1

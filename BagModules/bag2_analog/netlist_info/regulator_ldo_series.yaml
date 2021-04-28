@@ -1,0 +1,116 @@
+lib_name: bag2_analog
+cell_name: regulator_ldo_series
+pins: [ "VREF", "VDD", "VSS", "VREG" ]
+instances:
+  XBIAS:
+    lib_name: bag2_analog
+    cell_name: constant_gm
+    instpins:
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VN:
+        direction: output
+        net_name: "VN"
+        num_bits: 1
+      VP:
+        direction: output
+        net_name: "VP"
+        num_bits: 1
+  PIN0:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  XSERIES:
+    lib_name: BAG_prim
+    cell_name: nmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VREG"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VG"
+        num_bits: 1
+  XAMP:
+    lib_name: bag2_analog
+    cell_name: amp_diff_mirr
+    instpins:
+      VGTAIL:
+        direction: input
+        net_name: "VGTAIL"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VOUT:
+        direction: output
+        net_name: "VG"
+        num_bits: 1
+      VINN:
+        direction: input
+        net_name: "VREG"
+        num_bits: 1
+      VINP:
+        direction: input
+        net_name: "VREF"
+        num_bits: 1
+  XRES:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "PLUS"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "MINUS"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "BULK"
+        num_bits: 1
+  XCAP:
+    lib_name: bag2_wrappers
+    cell_name: cap_ideal
+    instpins:
+      MINUS:
+        direction: inputOutput
+        net_name: "MINUS"
+        num_bits: 1
+      PLUS:
+        direction: inputOutput
+        net_name: "PLUS"
+        num_bits: 1

@@ -1,0 +1,116 @@
+lib_name: bag2_analog
+cell_name: cascode_diode
+pins: [ "GP<0>", "GN<0>", "DNB<0>", "DPB<0>", "VDD", "VSS", "BP", "BN", "DPA<0>", "DNA<0>" ]
+instances:
+  XCOREA:
+    lib_name: bag2_analog
+    cell_name: cascode_core
+    instpins:
+      GP<0>:
+        direction: input
+        net_name: "GP<0>"
+        num_bits: 1
+      BN:
+        direction: inputOutput
+        net_name: "BN"
+        num_bits: 1
+      BP:
+        direction: inputOutput
+        net_name: "BP"
+        num_bits: 1
+      DP<0>:
+        direction: inputOutput
+        net_name: "DPA<0>"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      DN<0>:
+        direction: inputOutput
+        net_name: "DNA<0>"
+        num_bits: 1
+      GN<0>:
+        direction: input
+        net_name: "GN<0>"
+        num_bits: 1
+  XCOREB:
+    lib_name: bag2_analog
+    cell_name: cascode_core
+    instpins:
+      GP<0>:
+        direction: input
+        net_name: "GP<0>"
+        num_bits: 1
+      BN:
+        direction: inputOutput
+        net_name: "BN"
+        num_bits: 1
+      BP:
+        direction: inputOutput
+        net_name: "BP"
+        num_bits: 1
+      DP<0>:
+        direction: inputOutput
+        net_name: "DPB<0>"
+        num_bits: 1
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      DN<0>:
+        direction: inputOutput
+        net_name: "DNB<0>"
+        num_bits: 1
+      GN<0>:
+        direction: input
+        net_name: "GN<0>"
+        num_bits: 1
+  PIN0:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN1:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
+  PIN9:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN8:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN7:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN6:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN5:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN4:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
