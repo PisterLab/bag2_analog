@@ -26,15 +26,15 @@ params:
     amp_mir: specs_mos_char/nch.yaml
     ser: specs_mos_char/pch.yaml
   th_dict: 
-    amp_in: lvt
-    amp_load: lvt
-    amp_tail: lvt
-    amp_mir: lvt
-    ser: lvt
+    amp_in: th_type
+    amp_load: th_type
+    amp_tail: th_type
+    amp_mir: th_type
+    ser: th_type
   l_dict:
     amp_in: !!float 500e-9
     amp_load: !!float 500e-9
     amp_tail: !!float 500e-9
     amp_mir: !!float 500e-9
     ser: !!float 500e-9
-  sim_env: TT
+  sim_env: nominal

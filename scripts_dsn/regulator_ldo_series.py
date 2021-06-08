@@ -143,7 +143,7 @@ class bag2_analog__regulator_ldo_series_dsn(DesignModule):
                 Vstar_tail = Vstar_tail_i
 
         # Size reference current mirror
-        op_mir = op_tail
+        op_mir = db_dict['amp_mir'].query(vgs=vgtail, vds=vgtail, vbs=0)
         m_mir = iref/(2*op_mir['ibias'])
         wm_mir = (m_mir%1 + 1)
         nf_mir = 2*int(m_mir)
