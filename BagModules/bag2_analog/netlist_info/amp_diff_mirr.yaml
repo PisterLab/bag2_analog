@@ -1,14 +1,14 @@
 lib_name: bag2_analog
 cell_name: amp_diff_mirr
-pins: [ "VINN", "VINP", "VOUT", "VDD", "VSS", "VGTAIL" ]
+pins: [ "VINN", "VINP", "IBN", "VOUT", "VDD", "VSS" ]
 instances:
   XDIFFPAIR:
     lib_name: bag2_analog
     cell_name: diffpair_n
     instpins:
-      VGTAIL:
-        direction: input
-        net_name: "VGTAIL"
+      VTAIL:
+        direction: inputOutput
+        net_name: "VTAIL"
         num_bits: 1
       VSS:
         direction: inputOutput
@@ -24,11 +24,11 @@ instances:
         num_bits: 1
       VINN:
         direction: input
-        net_name: "VINP"
+        net_name: "VINN"
         num_bits: 1
       VINP:
         direction: input
-        net_name: "VINN"
+        net_name: "VINP"
         num_bits: 1
   XLOAD:
     lib_name: bag2_analog
@@ -78,3 +78,27 @@ instances:
     lib_name: basic
     cell_name: iopin
     instpins: {}
+  XBIAS:
+    lib_name: bag2_analog
+    cell_name: mirror_n
+    instpins:
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      out:
+        direction: output
+        net_name: "VTAIL"
+        num_bits: 1
+      s_out:
+        direction: input
+        net_name: "VSS"
+        num_bits: 1
+      in:
+        direction: input
+        net_name: "IBN"
+        num_bits: 1
+      s_in:
+        direction: input
+        net_name: "VSS"
+        num_bits: 1

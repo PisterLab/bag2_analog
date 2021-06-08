@@ -34,12 +34,10 @@ class bag2_analog__amp_gm_mirr(Module):
         """
         return dict(
             in_type = '"p" or "n" for NMOS or PMOS input pair',
-            l_dict = 'Channel lengths for devices (in, load, flip)',
-            w_dict = 'Channel widths for devices (in, load, flip)',
-            th_dict = 'Device threshold flavors (in, load, flip)',
-            seg_dict = 'Number of device segments (in, load, load_copy, flip)',
-            # mirr_params_dict = 'The output-facing load is key "load_out", the non-output-facing load is "load", and the flipped mirror is key "flip_out"',
-            # diffpair_params = 'Input differential pair and tail parameters'
+            l_dict = 'Channel lengths for devices (in, load, flip, tail)',
+            w_dict = 'Channel widths for devices (in, load, flip, tail)',
+            th_dict = 'Device threshold flavors (in, load, flip, tail)',
+            seg_dict = 'Number of device segments (in, load, load_copy, flip, tail, bias)',
         )
 
     def design(self, **params):
@@ -63,8 +61,6 @@ class bag2_analog__amp_gm_mirr(Module):
         w_dict = params['w_dict']
         th_dict = params['th_dict']
         seg_dict = params['seg_dict']
-        # mirr_params_dict = params['mirr_params_dict']
-        # diffpair_params = params['diffpair_params']
 
         # Change input pair type as necessary
         if in_type.lower() == 'p':
@@ -80,12 +76,15 @@ class bag2_analog__amp_gm_mirr(Module):
             self.replace_instance_master(inst_name='XMIRR_FLIPOUT',
                                          lib_name='bag2_analog',
                                          cell_name='mirror_p')
+            self.replace_instance_master(inst_name='XBIAS',
+                                         lib_name='bag2_analog',
+                                         cell_name='mirror_p')
 
             diffpair_conn = dict(VINP='VINP',
                                  VINN='VINN',
                                  VOUTP='VOUT1A',
                                  VOUTN='VOUT1B',
-                                 VGTAIL='VGTAIL',
+                                 VTAIL='VTAIL',
                                  VDD='VDD')
 
             loadout_conn = {'s_in': 'VSS',
@@ -103,6 +102,11 @@ class bag2_analog__amp_gm_mirr(Module):
                             'in': 'VOUT2A',
                             'out': 'VOUT',
                             'VDD': 'VDD'}
+            bias_conn = {'s_in' : 'VDD',
+                         's_out' : 'VDD',
+                         'in' : 'IBP',
+                         'out' : 'VTAIL',
+                         'VDD' : 'VDD'}
 
             for pin, net in diffpair_conn.items():
                 self.reconnect_instance_terminal('XDIFFPAIR', pin, net)
@@ -115,18 +119,20 @@ class bag2_analog__amp_gm_mirr(Module):
 
             for pin, net in flipout_conn.items():
                 self.reconnect_instance_terminal('XMIRR_FLIPOUT', pin, net)
+
+            for pin, net in bias_conn.items():
+                self.reconnect_instance_terminal('XBIAS', pin, net)
+
+            self.rename_pin('IBN', 'IBP')
+
         elif in_type.lower() != 'n':
             raise ValueError(f"in_type {in_type} should be 'p' or 'n'")
 
         # Design instances
-        diffpair_params = dict(lch_dict={'in' : l_dict['in'],
-                                         'tail' : l_dict['tail']},
-                               w_dict={'in' : w_dict['in'],
-                                       'tail' : w_dict['tail']},
-                               th_dict={'in' : th_dict['in'],
-                                        'tail' : th_dict['tail']},
-                               seg_dict={'in' : seg_dict['in'],
-                                         'tail' : seg_dict['tail']})
+        diffpair_params = dict(lch=l_dict['in'],
+                               wch=w_dict['in'],
+                               intent=th_dict['in'],
+                               nf=seg_dict['in'])
 
         load_params = dict(device_params=dict(w=w_dict['load'],
                                               l=l_dict['load'],
@@ -140,7 +146,14 @@ class bag2_analog__amp_gm_mirr(Module):
                                          seg_in=seg_dict['flip'],
                                          seg_out_list=[seg_dict['flip']])
 
+        bias_params = dict(device_params=dict(w=w_dict['tail'],
+                                              l=l_dict['tail'],
+                                              intent=th_dict['tail']),
+                           seg_in=seg_dict['bias'],
+                           seg_out_list=[seg_dict['tail']])
+
         self.instances['XDIFFPAIR'].design(**diffpair_params)
         self.instances['XMIRR_LOADOUT'].design(**load_params)
         self.instances['XMIRR_LOAD'].design(**load_params)
         self.instances['XMIRR_FLIPOUT'].design(**flip_params)
+        self.instances['XBIAS'].design(**bias_params)

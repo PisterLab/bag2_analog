@@ -33,10 +33,10 @@ class bag2_analog__diffpair_n(Module):
             dictionary from parameter names to descriptions.
         """
         return dict(
-            lch_dict = 'Dictionary of device channel lengths',
-            w_dict = 'Dictionary of device widths',
-            seg_dict = 'Dictionary of segments per device',
-            th_dict = 'Dictionary of threshold flavors'
+            lch = 'Device channel length',
+            wch = 'Device channel width',
+            nf = 'Segments per device',
+            intent = 'Threshold flavor'
         )
 
     def design(self, **params) -> None:
@@ -55,15 +55,8 @@ class bag2_analog__diffpair_n(Module):
         restore_instance()
         array_instance()
         """
-        device_map = dict(
-            XINA='in',
-            XINB='in',
-            XTAIL='tail')
-
-        for device_name, key_name in device_map.items():
-            w = params['w_dict'][key_name]
-            seg = params['seg_dict'][key_name]
-            intent = params['th_dict'][key_name]
-            lch = params['lch_dict'][key_name]
-
-            self.instances[device_name].design(w=w, l=lch, nf=seg, intent=intent)
+        for device_name in ('XINA', 'XINB'):
+            self.instances[device_name].design(w=params['wch'],
+                                               l=params['lch'],
+                                               nf=params['nf'],
+                                               intent=params['intent'])

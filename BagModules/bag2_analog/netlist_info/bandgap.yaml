@@ -111,7 +111,7 @@ instances:
     cell_name: amp_diff_mirr
     instpins:
       VGTAIL:
-        direction: input
+        direction: 
         net_name: "VN"
         num_bits: 1
       VSS:

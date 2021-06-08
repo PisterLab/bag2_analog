@@ -34,12 +34,10 @@ class bag2_analog__amp_diff_mirr(Module):
         """
         return dict(
             in_type = '"p" or "n" for NMOS or PMOS input pair',
-            l_dict = 'Dictionary of channel lengths',
-            w_dict = 'Dictionary of channel widths',
-            seg_dict = 'Dictionary of number of fingers',
-            th_dict = 'Dictionary of device intents'
-            # mirr_params = 'Mirror parameters',
-            # diffpair_params = 'Input differential pair and tail parameters.'
+            l_dict = 'Dictionary of channel lengths; keys are in, load, tail',
+            w_dict = 'Dictionary of channel widths; keys are in, load, tail',
+            seg_dict = 'Dictionary of number of fingers, keys are in, load, tail, bias',
+            th_dict = 'Dictionary of device intents, keys are in, load, tail'
         )
 
     def design(self, **params):
@@ -58,26 +56,26 @@ class bag2_analog__amp_diff_mirr(Module):
         restore_instance()
         array_instance()
         """
-
         in_type = params['in_type']
         l_dict = params['l_dict']
         w_dict = params['w_dict']
         seg_dict = params['seg_dict']
         th_dict = params['th_dict']
-        diffpair_params = dict(lch_dict=l_dict,
-                               w_dict=w_dict,
-                               seg_dict=seg_dict,
-                               th_dict=th_dict)
-        mirror_params = dict(device_params=dict(l=l_dict['load'],
-                                                w=w_dict['load'],
-                                                intent=th_dict['load']),
-                             seg_in=seg_dict['load'],
-                             seg_out_list=[seg_dict['load']])
+        diffpair_params = dict(lch=l_dict['in'],
+                               wch=w_dict['in'],
+                               nf=seg_dict['in'],
+                               intent=th_dict['in'])
+        load_params = dict(device_params=dict(l=l_dict['load'],
+                                              w=w_dict['load'],
+                                              intent=th_dict['load']),
+                           seg_in=seg_dict['load'],
+                           seg_out_list=[seg_dict['load']])
 
-        # diffpair_params = params['diffpair_params']
-        # mirror_params = params['mirr_params']
-
-        assert len(mirror_params['seg_out_list'])==1, f'Mirror should have only 1 output device'
+        bias_params = dict(device_params=dict(l=l_dict['tail'],
+                                              w=w_dict['tail'],
+                                              intent=th_dict['tail']),
+                           seg_in=seg_dict['bias'],
+                           seg_out_list=[seg_dict['tail']])
 
         # Adjusting masters and connections for input pair type (default n-type)
         if in_type == 'p':
@@ -87,27 +85,41 @@ class bag2_analog__amp_diff_mirr(Module):
             self.replace_instance_master(inst_name='XLOAD',
                                          lib_name='bag2_analog',
                                          cell_name='mirror_n')
+            self.replace_instance_master(inst_name='XBIAS',
+                                         lib_name='bag2_analog',
+                                         cell_name='mirror_p')
 
             diffpair_conn = dict(VINP='VINN',
                                  VINN='VINP',
                                  VOUTP='VOUTX',
                                  VOUTN='VOUT',
-                                 VGTAIL='VGTAIL',
+                                 VTAIL='VTAIL',
                                  VDD='VDD')
 
-            mirror_conn = {'s_in': 'VSS',
-                           's_out':'VSS',
-                           'in':'VOUTX',
-                           'out':'VOUT',
-                           'VSS':'VSS'}
+            load_conn = {'s_in': 'VSS',
+                         's_out':'VSS',
+                         'in':'VOUTX',
+                         'out':'VOUT',
+                         'VSS':'VSS'}
+
+            bias_conn = {'s_in' : 'VDD',
+                         's_out': 'VDD',
+                         'in' : 'IBP',
+                         'out' : 'VTAIL',
+                         'VDD' : 'VDD'}
+
+            self.rename_pin('IBN', 'IBP')
 
             for pin, net in diffpair_conn.items():
                 self.reconnect_instance_terminal('XDIFFPAIR',
                                                   pin, net)
-            for pin, net in mirror_conn.items():
+            for pin, net in load_conn.items():
                 self.reconnect_instance_terminal('XLOAD',
                                                  pin, net)
+            for pin, net in bias_conn.items():
+                self.reconnect_instance_terminal('XBIAS', pin, net)
 
         # Design instances
         self.instances['XDIFFPAIR'].design(**diffpair_params)
-        self.instances['XLOAD'].design(**mirror_params)
+        self.instances['XLOAD'].design(**load_params)
+        self.instances['XBIAS'].design(**bias_params)

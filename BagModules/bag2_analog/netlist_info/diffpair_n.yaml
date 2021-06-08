@@ -1,14 +1,14 @@
 lib_name: bag2_analog
 cell_name: diffpair_n
-pins: [ "VSS", "VINN", "VINP", "VOUTP", "VOUTN", "VGTAIL" ]
+pins: [ "VSS", "VINN", "VINP", "VOUTP", "VOUTN", "VTAIL" ]
 instances:
-  PIN0:
+  PIN6:
     lib_name: basic
     cell_name: iopin
     instpins: {}
-  PIN5:
+  PIN0:
     lib_name: basic
-    cell_name: ipin
+    cell_name: iopin
     instpins: {}
   PIN2:
     lib_name: basic
@@ -65,24 +65,4 @@ instances:
       G:
         direction: inputOutput
         net_name: "VINN"
-        num_bits: 1
-  XTAIL:
-    lib_name: BAG_prim
-    cell_name: nmos4_standard
-    instpins:
-      S:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      D:
-        direction: inputOutput
-        net_name: "VTAIL"
-        num_bits: 1
-      B:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      G:
-        direction: inputOutput
-        net_name: "VGTAIL"
         num_bits: 1
