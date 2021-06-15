@@ -2,11 +2,11 @@ lib_name: bag2_analog
 cell_name: diffpair_n
 pins: [ "VSS", "VINN", "VINP", "VOUTP", "VOUTN", "VTAIL" ]
 instances:
-  PIN6:
+  PIN0:
     lib_name: basic
     cell_name: iopin
     instpins: {}
-  PIN0:
+  PIN6:
     lib_name: basic
     cell_name: iopin
     instpins: {}

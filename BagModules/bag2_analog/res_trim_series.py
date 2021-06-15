@@ -89,6 +89,12 @@ class bag2_analog__res_trim_series(Module):
             multistrip_params.update(num_unit=base_num_unit*res_groupings[i])
             self.instances['XR'][i].design(**multistrip_params)
 
+        # res_params_copy = res_params.copy()
+        # for i in range(num_sw):
+        #     res_params_copy['seg'] = base_num_unit * res_groupings[i]
+        #     print(res_params_copy['seg'])
+        #     self.instances['XR'][i].design(**res_params_copy)
+
         if bulk_conn in ('VDD', 'VSS'):
             self.remove_pin('BULK')
         elif bulk_conn != 'BULK':

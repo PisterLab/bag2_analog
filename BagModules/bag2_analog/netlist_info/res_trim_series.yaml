@@ -2,38 +2,6 @@ lib_name: bag2_analog
 cell_name: res_trim_series
 pins: [ "A", "Z", "BULK", "CTRL", "CTRLb", "VDD", "VSS" ]
 instances:
-  XR:
-    lib_name: bag2_analog
-    cell_name: res_multistrip
-    instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "mid<0>"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
-        net_name: "Z"
-        num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
-  XRBASE:
-    lib_name: bag2_analog
-    cell_name: res_multistrip
-    instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "A"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
-        net_name: "mid<0>"
-        num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
   PIN6:
     lib_name: basic
     cell_name: iopin
@@ -89,4 +57,36 @@ instances:
       D:
         direction: inputOutput
         net_name: "mid<0>"
+        num_bits: 1
+  XR:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "mid<0>"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "Z"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "BULK"
+        num_bits: 1
+  XRBASE:
+    lib_name: bag2_analog
+    cell_name: res_multistrip
+    instpins:
+      PLUS:
+        direction: inputOutput
+        net_name: "A"
+        num_bits: 1
+      MINUS:
+        direction: inputOutput
+        net_name: "mid<0>"
+        num_bits: 1
+      BULK:
+        direction: inputOutput
+        net_name: "BULK"
         num_bits: 1
