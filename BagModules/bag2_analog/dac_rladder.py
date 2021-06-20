@@ -70,8 +70,9 @@ class bag2_analog__dac_rladder(Module):
         assert code_max < num_res, f'Mux max connection point ({code_max}) exceeds height of the resistive ladder {num_res-1}'
 
         # Design instances
+        rladder_params['num_out'] = num_res
         self.instances['XMUX'].design(num_bits=num_bits, **mux_params)
-        self.instances['XRLADDER'].design(num_out=num_res, **rladder_params)
+        self.instances['XRLADDER'].design(**rladder_params)
 
         # Rewire mux
         suffix_mux = f'<{num_mux_in-1}:0>'
