@@ -1,0 +1,132 @@
+lib_name: bag2_analog
+cell_name: bandgap_startup
+pins: [ "VDD", "VSS", "VG", "VSNS" ]
+instances:
+  XPULLDOWN:
+    lib_name: BAG_prim
+    cell_name: nmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VG"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VGPULLDOWN"
+        num_bits: 1
+  XSNS:
+    lib_name: BAG_prim
+    cell_name: nmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VGPULLDOWN"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VSNS"
+        num_bits: 1
+  X5:
+    lib_name: BAG_prim
+    cell_name: pmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VGSTART"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+  X3:
+    lib_name: BAG_prim
+    cell_name: pmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VGSTART"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VGSTART"
+        num_bits: 1
+  X2:
+    lib_name: BAG_prim
+    cell_name: pmos4_standard
+    instpins:
+      S:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      D:
+        direction: inputOutput
+        net_name: "VGPULLDOWN"
+        num_bits: 1
+      B:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      G:
+        direction: inputOutput
+        net_name: "VGSTART"
+        num_bits: 1
+  XC:
+    lib_name: bag2_wrappers
+    cell_name: cap_ideal
+    instpins:
+      MINUS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      PLUS:
+        direction: inputOutput
+        net_name: "VGSTART"
+        num_bits: 1
+  PIN1:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN0:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  PIN2:
+    lib_name: basic
+    cell_name: opin
+    instpins: {}
+  PIN3:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}

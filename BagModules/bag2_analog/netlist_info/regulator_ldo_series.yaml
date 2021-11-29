@@ -1,27 +1,23 @@
 lib_name: bag2_analog
 cell_name: regulator_ldo_series
-pins: [ "VREF", "VDD", "VSS", "VREG" ]
+pins: [ "VREF", "VDD", "VSS", "IBN", "VREG" ]
 instances:
-  XBIAS:
-    lib_name: bag2_analog
-    cell_name: constant_gm
+  XRES:
+    lib_name: BAG_prim
+    cell_name: res_standard
     instpins:
-      VSS:
+      MINUS:
         direction: inputOutput
-        net_name: "VSS"
+        net_name: "MINUS"
         num_bits: 1
-      VDD:
+      PLUS:
         direction: inputOutput
-        net_name: "VDD"
+        net_name: "PLUS"
         num_bits: 1
-      VN:
-        direction: output
-        net_name: "VN"
-        num_bits: 1
-      VP:
-        direction: output
-        net_name: "VP"
-        num_bits: 1
+  PIN4:
+    lib_name: basic
+    cell_name: ipin
+    instpins: {}
   PIN0:
     lib_name: basic
     cell_name: ipin
@@ -62,9 +58,9 @@ instances:
     lib_name: bag2_analog
     cell_name: amp_diff_mirr
     instpins:
-      VGTAIL:
-        direction: 
-        net_name: "VGTAIL"
+      IBN:
+        direction: input
+        net_name: "IBN"
         num_bits: 1
       VSS:
         direction: inputOutput
@@ -85,22 +81,6 @@ instances:
       VINP:
         direction: input
         net_name: "VREF"
-        num_bits: 1
-  XRES:
-    lib_name: bag2_analog
-    cell_name: res_multistrip
-    instpins:
-      PLUS:
-        direction: inputOutput
-        net_name: "PLUS"
-        num_bits: 1
-      MINUS:
-        direction: inputOutput
-        net_name: "MINUS"
-        num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
         num_bits: 1
   XCAP:
     lib_name: bag2_wrappers

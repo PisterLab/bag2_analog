@@ -1,6 +1,6 @@
 lib_name: bag2_analog
-cell_name: amp_diff_mirr
-pins: [ "VINN", "VINP", "IBN", "VOUT", "VDD", "VSS" ]
+cell_name: amp_diff_mirr_bias
+pins: [ "VINP", "VINN", "VOUT", "VSS", "VDD", "VGTAIL" ]
 instances:
   XDIFFPAIR:
     lib_name: bag2_analog
@@ -24,11 +24,11 @@ instances:
         num_bits: 1
       VINN:
         direction: input
-        net_name: "VINP"
+        net_name: "VINN"
         num_bits: 1
       VINP:
         direction: input
-        net_name: "VINN"
+        net_name: "VINP"
         num_bits: 1
   XLOAD:
     lib_name: bag2_analog
@@ -54,7 +54,7 @@ instances:
         direction: input
         net_name: "VOUTX"
         num_bits: 1
-  PIN2:
+  PIN0:
     lib_name: basic
     cell_name: ipin
     instpins: {}
@@ -62,7 +62,7 @@ instances:
     lib_name: basic
     cell_name: ipin
     instpins: {}
-  PIN0:
+  PIN2:
     lib_name: basic
     cell_name: ipin
     instpins: {}
@@ -70,35 +70,31 @@ instances:
     lib_name: basic
     cell_name: opin
     instpins: {}
-  PIN5:
-    lib_name: basic
-    cell_name: iopin
-    instpins: {}
   PIN4:
     lib_name: basic
     cell_name: iopin
     instpins: {}
-  XBIAS:
-    lib_name: bag2_analog
-    cell_name: mirror_n
+  PIN5:
+    lib_name: basic
+    cell_name: iopin
+    instpins: {}
+  XTAIL:
+    lib_name: BAG_prim
+    cell_name: nmos4_standard
     instpins:
-      VSS:
+      S:
         direction: inputOutput
         net_name: "VSS"
         num_bits: 1
-      out:
-        direction: output
+      D:
+        direction: inputOutput
         net_name: "VTAIL"
         num_bits: 1
-      s_out:
-        direction: input
+      B:
+        direction: inputOutput
         net_name: "VSS"
         num_bits: 1
-      in:
-        direction: input
-        net_name: "IBN"
-        num_bits: 1
-      s_in:
-        direction: input
-        net_name: "VSS"
+      G:
+        direction: inputOutput
+        net_name: "VGTAIL"
         num_bits: 1

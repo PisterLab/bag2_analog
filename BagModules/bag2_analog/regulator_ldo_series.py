@@ -34,8 +34,7 @@ class bag2_analog__regulator_ldo_series(Module):
         """
         return dict(
             series_params = 'Parameters "type" (n/p), and the various device parameters (assumes MOSFET)',
-            amp_params = 'amp_folded_cascode parameters',
-            biasing_params = 'TODO',
+            amp_params = 'amp parameters parameters',
             cap_conn_list = 'List of dictionaries of device connections',
             cap_param_list = 'List of dictionaries containing device parameters',
             res_conn_list = 'List of dictionaries of device connections',
@@ -57,7 +56,6 @@ class bag2_analog__regulator_ldo_series(Module):
         res_conn_list = params['res_conn_list']
         res_param_list = params['res_param_list']
         amp_params = params['amp_params']
-        biasing_params = params['biasing_params']
 
         # Design the series device and reconnect as necessary
         series_type = series_params['type']
@@ -110,11 +108,6 @@ class bag2_analog__regulator_ldo_series(Module):
             self.reconnect_instance_terminal('XAMP', 'VINP', 'VREG')
             self.reconnect_instance_terminal('XAMP', 'VINN', 'VREF')
 
-        # TODO Design biasing, this biasing willlikely change
-        res_side = 'n' if amp_params['in_type']=='n' else 'p'
-        self.instances['XBIAS'].design(res_side=res_side, **biasing_params)
-
-        if amp_params['in_type'] == 'n':
-            self.reconnect_instance_terminal('XBIAS', 'VN', 'VGTAIL')
-        elif amp_params['in_type'] == 'p':
-            self.reconnect_instance_terminal('XBIAS', 'VP', 'VGTAIL')
+        if amp_params['in_type'] == 'p':
+            self.rename_pin('IBN', 'IBP')
+            self.reconnect_instance_terminal('XAMP', 'IBP', 'IBP')

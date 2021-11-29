@@ -37,7 +37,6 @@ class bag2_analog__bandgap(Module):
             p_params = 'Feedback PMOS parameters',
             constgm_params = 'Constant gm parameters',
             res_params_dict = 'Keys are "fb" and "diff"',
-            bulk_conn = 'Resistor bulk connection terminal',
             diode_mult = 'Diode multiplication factor'
         )
 
@@ -61,7 +60,6 @@ class bag2_analog__bandgap(Module):
         p_params = params['p_params']
         constgm_params = params['constgm_params']
         res_params_dict = params['res_params_dict']
-        bulk_conn = params['bulk_conn']
         diode_mult = params['diode_mult']
 
         bias_type = amp_params['in_type']
@@ -88,13 +86,3 @@ class bag2_analog__bandgap(Module):
         # Reconnect amplifier biasing if necessary
         if amp_in_type == 'p':
             self.reconnect_instance_terminal('XOTA', 'VGTAIL', 'VP')
-
-        # Connect resistor bulk terminal
-        for inst in res_map.keys():
-            self.reconnect_instance_terminal(inst, 'BULK', bulk_conn)
-
-        if bulk_conn in ('VDD', 'VSS'):
-            self.remove_pin('BULK')
-        elif bulk_conn != 'BULK':
-            self.rename_pin('BULK', bulk_conn)
-

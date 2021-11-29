@@ -1,6 +1,6 @@
 lib_name: bag2_analog
 cell_name: bandgap
-pins: [ "VDD", "VSS", "VBG", "BULK" ]
+pins: [ "VDD", "VSS", "VBG" ]
 instances:
   XPP:
     lib_name: BAG_prim
@@ -43,8 +43,8 @@ instances:
         net_name: "VOUT_AMP"
         num_bits: 1
   XRDIFF:
-    lib_name: bag2_analog
-    cell_name: res_multistrip
+    lib_name: BAG_prim
+    cell_name: res_standard
     instpins:
       PLUS:
         direction: inputOutput
@@ -54,13 +54,9 @@ instances:
         direction: inputOutput
         net_name: "VDP"
         num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
   XRFBP:
-    lib_name: bag2_analog
-    cell_name: res_multistrip
+    lib_name: BAG_prim
+    cell_name: res_standard
     instpins:
       PLUS:
         direction: inputOutput
@@ -70,13 +66,9 @@ instances:
         direction: inputOutput
         net_name: "VINP"
         num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
   XRFBN:
-    lib_name: bag2_analog
-    cell_name: res_multistrip
+    lib_name: BAG_prim
+    cell_name: res_standard
     instpins:
       PLUS:
         direction: inputOutput
@@ -86,14 +78,6 @@ instances:
         direction: inputOutput
         net_name: "VINN"
         num_bits: 1
-      BULK:
-        direction: inputOutput
-        net_name: "BULK"
-        num_bits: 1
-  PIN3:
-    lib_name: basic
-    cell_name: iopin
-    instpins: {}
   PIN1:
     lib_name: basic
     cell_name: iopin
@@ -106,12 +90,32 @@ instances:
     lib_name: basic
     cell_name: opin
     instpins: {}
+  XCONSTGM:
+    lib_name: bag2_analog
+    cell_name: constant_gm
+    instpins:
+      VSS:
+        direction: inputOutput
+        net_name: "VSS"
+        num_bits: 1
+      VDD:
+        direction: inputOutput
+        net_name: "VDD"
+        num_bits: 1
+      VN:
+        direction: output
+        net_name: "VN"
+        num_bits: 1
+      VP:
+        direction: output
+        net_name: "VP"
+        num_bits: 1
   XOTA:
     lib_name: bag2_analog
-    cell_name: amp_diff_mirr
+    cell_name: amp_diff_mirr_bias
     instpins:
       VGTAIL:
-        direction: 
+        direction: input
         net_name: "VN"
         num_bits: 1
       VSS:
@@ -133,24 +137,4 @@ instances:
       VINP:
         direction: input
         net_name: "VINP"
-        num_bits: 1
-  XCONSTGM:
-    lib_name: bag2_analog
-    cell_name: constant_gm
-    instpins:
-      VSS:
-        direction: inputOutput
-        net_name: "VSS"
-        num_bits: 1
-      VDD:
-        direction: inputOutput
-        net_name: "VDD"
-        num_bits: 1
-      VN:
-        direction: output
-        net_name: "VN"
-        num_bits: 1
-      VP:
-        direction: output
-        net_name: "VP"
         num_bits: 1
